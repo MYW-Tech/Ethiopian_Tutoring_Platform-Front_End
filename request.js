@@ -1,4 +1,4 @@
-const api_url = "http://localhost:8080/yope_php/Ethiopian_Tutoring_Platform/Back_End";
+const api_url = "http://ethiotutor.free.nf";
 
 function cheekRole() {
     const role = document.getElementById('role').value;
