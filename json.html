@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Display Fetched Data</title>
+</head>
+<body>
+  <h1>Fetched User Data</h1>
+  <div id="output"></div>
+
+  <script>
+    const api_url = "http://localhost/Ethiopian_Tutoring_Platform/Ethiopian_Tutoring_Platform-Back_End/user.php";
+
+    fetch(api_url)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then(data => {
+        const output = document.getElementById('output');
+
+        // Convert JSON object to readable HTML
+        output.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+      })
+      .catch(error => {
+        console.error("There was a problem with the fetch operation:", error);
+      });
+  </script>
+</body>
+</html>

@@ -1,0 +1,275 @@
+/* Import Google Font (Upwork-like style) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+/* General Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f5f7f7;
+    color: #333;
+}
+
+/* Header (Navigation Bar) */
+header {
+    background-color: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 600;
+    color: #14A800;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #14A800;
+}
+
+/* Hero Section */
+.hero {
+    background-color: #eaf7ee;
+    height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    margin-top: 80px;
+}
+
+.hero h1 {
+    font-size: 2.8rem;
+    color: #14A800;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.search-bar {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.search-bar input {
+    padding: 12px;
+    width: 300px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.search-bar button {
+    background-color: #14A800;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.search-bar button:hover {
+    background-color: #0e7e00;
+}
+
+/* Tutor Listings */
+.tutor-list {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.tutor-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.tutor-card {
+    width: 280px;
+    background: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.tutor-card:hover {
+    transform: translateY(-5px);
+}
+
+.tutor-card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.tutor-card h3 {
+    font-size: 18px;
+    color: #333;
+    margin-top: 10px;
+}
+
+.tutor-card p {
+    font-size: 14px;
+    color: #777;
+}
+
+.tutor-card .rating {
+    color: #ff9800;
+    font-weight: bold;
+}
+
+.tutor-card button {
+    background-color: #14A800;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 10px;
+}
+
+.tutor-card button:hover {
+    background-color: #0e7e00;
+}
+
+/* Footer */
+footer {
+    background-color: #fff;
+    color: #333;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+    box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+    font-size: 14px;
+}
+
+/* ✅ Responsive Design */
+
+/* Tablets (Max Width: 1024px) */
+@media (max-width: 1024px) {
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .search-bar input {
+        width: 250px;
+    }
+
+    .tutor-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* Mobile Devices (Max Width: 768px) */
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    .hero {
+        height: auto;
+        padding: 40px 20px;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .search-bar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .search-bar input {
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .search-bar button {
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .tutor-card {
+        width: 90%;
+        max-width: 350px;
+    }
+}
+
+/* Small Mobile Devices (Max Width: 480px) */
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .search-bar input {
+        width: 100%;
+    }
+
+    .tutor-card {
+        width: 100%;
+    }
+
+    footer {
+        padding: 15px;
+    }
+}

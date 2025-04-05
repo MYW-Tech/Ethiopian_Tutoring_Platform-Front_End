@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+        .container input, .container select, .container button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .container button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .container button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <fieldset>
+            <legend>Signup</legend>
+            
+            <select id="role" required oninput="cheekRole()">
+                <option value="" disabled selected>-- Select Role --</option>
+                <option value="admin">Administrator</option>
+                <option value="parent">Parent</option>
+                <option value="student">Student</option>
+                <option value="tutor">Tutor</option>
+            </select><br>
+            
+            <form onsubmit="return adminSubmit()">
+                <fieldset id="admin" style="display: none;">
+                    <legend>Signup for Administrator</legend>
+                    <input type="text" id="admin-username" placeholder="Username..." required><br>
+                    <input type="email" id="admin-email" placeholder="Email..." required><br>
+                    <input type="password" id="admin-password" placeholder="Password..." required><br>
+                    <input type="tel" id="admin-phoneNumber" placeholder="Phone Number..." required><br>
+                    <input type="file" id="admin-profileImage" accept="image/*"><br>
+                    <button type="submit">Submit</button>
+                </fieldset>
+            </form>
+
+            <form onsubmit="return parentSubmit()">
+                <fieldset id="parent" style="display: none;">
+                    <legend>Signup for Parent</legend>
+                    <input type="text" id="parent-username" placeholder="Username..." required><br>
+                    <input type="email" id="parent-email" placeholder="Email..." required><br>
+                    <input type="password" id="parent-password" placeholder="Password..." required><br>
+                    <input type="tel" id="parent-phoneNumber" placeholder="Phone Number..." required><br>
+                    <input type="text" id="parent-address" placeholder="Address..." required><br>
+                    <input type="file" id="parent-profileImage" accept="image/*"><br>
+                    <button type="submit">Submit</button>
+                </fieldset>
+            </form>
+
+            <form onsubmit="return studentSubmit()">
+                <fieldset id="student" style="display: none;">
+                    <legend>Signup for Student</legend>
+                    <input type="text" id="student-username" placeholder="Username..." required><br>
+                    <input type="email" id="student-email" placeholder="Email..." required><br>
+                    <input type="password" id="student-password" placeholder="Password..." required><br>
+                    <input type="tel" id="student-phoneNumber" placeholder="Phone Number..."><br>
+                    <input type="number" id="student-age" placeholder="Age..." required><br>
+                    <input type="text" id="student-gradeLevel" placeholder="Grade Level..." required><br>
+                    <input type="text" id="student-preferredSubject" placeholder="Preferred Subject..." required><br>
+                    <input type="text" id="student-school" placeholder="School Name..." required><br>
+                    <input type="email" id="student-studentParentEmail" placeholder="Parent Email..." required><br>
+                    <input type="file" id="student-profileImage" accept="image/*"><br>
+                    <button type="submit">Submit</button>
+                </fieldset>
+            </form>
+
+            <form onsubmit="return tutorSubmit()">
+                <fieldset id="tutor" style="display: none;">
+                    <legend>Signup for Tutor</legend>
+                    <input type="text" id="tutor-username" placeholder="Username..." required><br>
+                    <input type="email" id="tutor-email" placeholder="Email..." required><br>
+                    <input type="password" id="tutor-password" placeholder="Password..." required><br>
+                    <input type="tel" id="tutor-phoneNumber" placeholder="Phone Number..." required><br>
+                    <input type="text" id="tutor-specialization" placeholder="Specialization..." required><br>
+                    <input type="number" id="tutor-exprienceYear" placeholder="Exprience Years..." required><br>
+                    <textarea rows="5" id="tutor-bio" placeholder="Biography..."></textarea><br>
+                    <input type="radio" name="gender" id="tutor-gender1" value="male" style="width: 10%;" checked required>Male
+                    <input type="radio" name="gender" id="tutor-gender2" value="female" style="width: 10%;" required>Female<br>
+                    <input type="text" id="tutor-school" placeholder="School..." required><br>
+                    <input type="text" id="tutor-address" placeholder="address..." required><br>
+                    <input type="file" id="tutor-profileImage" accept="image/*"><br>
+                    <button type="submit">Submit</button>
+                </fieldset>
+            </form>
+            
+        </fieldset>
+    </div>
+
+    <script src="request.js"></script>
+</body>
+</html>

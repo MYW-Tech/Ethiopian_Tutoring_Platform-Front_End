@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success Tutor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="Home.css">
+    <script defer src="Home.js"></script>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <header>
+        <div class="menu-toggle" id="menu-toggle">&#9776;</div> <!-- Hamburger Menu -->
+        <nav class="nav-menu" id="nav-menu">
+            <ul>
+                <li><a href="register.html">Find Work</a></li>
+                <li><a href="#">Find Talent</a></li>
+                <li><a href="#">AI Services</a></li>
+                <li><a href="#">Login</a></li>
+            </ul>
+        </nav>
+
+        <div class="logo">Success Tutor</div>
+        <div class="logo">አስጠኚ ይፈልጋሉ?</div>
+
+        <div class="nav-right">
+            <span class="search-icon" id="search">&#128269;</span>
+            <a href="signup.html" class="signup">Sign up</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-images">
+            <img src="images/man.jpg" alt="Man working">
+            <img src="images/woman.jpg" alt="Woman working">
+        </div>
+        <div class="hero-content">
+            <h1>We connect people to bring successful Tutor </h1>
+            <p>Find high-quality talent or open jobs for Parents and Tutors with the help of AI tools that keep you in control.</p>
+        </div>
+    </section>
+    
+    <h1 style="text-align:center;">Hire a Tutor</h1>
+
+    <div id="tutors-container" class="tutors-grid"></div>
+    <div id="pagination" style="margin-top: 20px;"></div>
+    
+   <script src="fetching.js"></script>
+
+
+
+    <!-- Footer -->
+    <footer class="footer" id="footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <div class="social-icons">
+                    <a style="color: blue; background-color: white;" href="https://facebook.com" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a style="background-image: linear-gradient(to bottom,purple,red,yellow); color:white;font-weight: bolder;"  href="https://instagram.com" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a style="color: red; background-color: wheat;" href="https://youtube.com" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h3>Useful Links</h3>
+                <ul>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h3>Contact Info</h3>
+                <p>Email: <a href="mailto:walelign2129@gmail.com">MYW_Tech@gmail.com</a></p>
+                <p>Phone: <a href="tel:+12023862702">+2519222840235</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025. All Rights Reserved.</p>
+            <p>&#64; Developed by MYW_Tech</p>
+        </div>
+    </footer>
+
+    <!-- <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            databaseURL: "YOUR_DATABASE_URL",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+    </script> -->
+
+</body>
+</html>

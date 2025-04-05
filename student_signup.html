@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="sign_up.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <a href="signup.html" class="home-icon">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+    <div class="container">
+        <div class="header">
+            <svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                <path fill="#4A7D99" fill-opacity="1" d="M0,128L120,138.7C240,149,480,171,720,160C960,149,1200,107,1320,85.3L1440,64V0H0Z"></path>
+            </svg>
+            <h2 class="title">Sign Up</h2>
+        </div>
+
+        <input type="hidden" id="role" value="student">
+            <!-- Full Name -->
+            <label for="name">Full Name:</label>
+            <div class="input-container">
+                <i class="fas fa-user"></i>
+                <input type="text" id="name" name="student-username" required placeholder="Enter your full name">
+            </div>
+
+            <!-- Email -->
+            <label for="email">Email:</label>
+            <div class="input-container">
+                <i class="fas fa-envelope"></i>
+                <input type="email" id="student-email" name="email" required placeholder="Enter your email">
+            </div>
+
+           <!-- Family Email -->
+            <label for="family_email">Family Email:</label>
+            <div class="input-container">
+                  <i class="fas fa-envelope"></i>
+                   <input type="email" id="family_email" name="studentParentEmail" required placeholder="Enter your family email">
+                </div>
+
+            <!-- Phone Number -->
+            <label for="phone">Phone Number:</label>
+            <div class="input-container">
+                <i class="fas fa-phone"></i>
+                <input type="tel" id="student-phoneNumber" name="phone" required placeholder="Enter your phone number">
+            </div>
+
+            <!-- Age -->
+            <label for="age">Age:</label>
+            <div class="input-container">
+                <i class="fas fa-calendar"></i>
+                <input type="number" id="student-age" name="age" required placeholder="Enter your age">
+            </div>
+
+            <!-- Grade Level -->
+            <label for="grade">Grade Level:</label>
+            <div class="input-container">
+                <i class="fas fa-graduation-cap"></i>
+                <input type="text" id="student-gradeLevel" name="grade" required placeholder="Enter your grade level">
+            </div>
+
+            <!-- Preferred Subject -->
+            <label for="subject">Preferred Subject:</label>
+            <div class="input-container">
+                <i class="fas fa-book"></i>
+                <input type="text" id="student-preferredSubject" name="subject" required placeholder="Enter your preferred subject">
+            </div>
+
+            <!-- School -->
+            <label for="school">School:</label>
+            <div class="input-container">
+                <i class="fas fa-school"></i>
+                <input type="text" id="student-school" name="school" required placeholder="Enter your school name">
+            </div>
+
+            <!-- Password -->
+            <label for="password">Password:</label>
+            <div class="input-container">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="student-password" name="password" required placeholder="Enter your password">
+            </div>
+          <!-- Image Upload -->
+
+            <label for="profileImage">Upload Profile Image:</label>
+            <input type="file" id="profileImage" name="profileImage">
+            <button type="submit" class="sign-in-btn" onclick="studentSubmit()">Sign Up</button>
+            <p class="login-link">Already have an account? <a href="#">Login</a></p>
+            <!-- </form> -->
+            </div>
+            <script src="request.js"></script>
+    
+</body>
+</html>

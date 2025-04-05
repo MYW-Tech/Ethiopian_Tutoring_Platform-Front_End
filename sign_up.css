@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f8f8f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.home-icon {
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    font-size: 24px;
+    color: #4A7D99;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+.home-icon:hover {
+    color: #2c5d73;
+}
+.container {
+    width: 320px;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.header {
+    position: relative;
+    width: 100%;
+    height: 120px;
+    background-color: #4A7D99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.wave {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.title {
+    position: relative;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.signup-form {
+    padding: 20px;
+}
+
+label {
+    display: block;
+    text-align: left;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    background: #eaeaea;
+    border-radius: 4px;
+    padding: 10px;
+    margin-top: 5px;
+}
+
+.input-container i {
+    color: #777;
+    margin-right: 10px;
+}
+
+.input-container input {
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 100%;
+}
+
+.sign-in-btn {
+    width: 100%;
+    padding: 10px;
+    background: #d9534f;
+    color: white;
+    border: none;
+    margin-top: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+.sign-in-btn:hover {
+    background: #c9302c;
+}
+
+.login-link {
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.login-link a {
+    color: #4A7D99;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}

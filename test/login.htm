@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+        .container input, .container select, .container button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .container button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .container button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <form onsubmit="return login()">
+            <fieldset>
+                <legend>Login</legend>
+                <input type="email" name="email" id="email" placeholder="Email..." required><br>
+                <input type="password" name="password" id="password" placeholder="Password..." required><br>
+                
+                <select name="role" id="role" required>
+                    <option value="" disabled selected>-- Select Role --</option>
+                    <option value="admin">Administrator</option>
+                    <option value="parent">Parent</option>
+                    <option value="student">Student</option>
+                    <option value="tutor">Tutor</option>
+                </select><br>
+                
+                <button onclick="login()">Submit</button>
+            </fieldset>
+        </form>
+    </div>
+
+    <script src="request.js"></script>
+</body>
+</html>
