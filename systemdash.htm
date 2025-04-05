@@ -1,0 +1,38 @@
+<h1>System Dashboared</h1>
+    <h2>Accept System Feedback</h2>
+        <textarea name="comment" id="comment" cols="30" rows="10" placeholder="System Feedback here..."></textarea>
+        <button onclick="feedback()">Send</button>
+
+    <h1>List System Description</h1>
+    <button onclick="list_description()">List Description</button>
+
+<script src="api.js"></script>
+<script>
+    function feedback(){
+        comment = document.getElementById('comment').value;
+        const formData = new FormData();
+        formData.append('comment', comment);
+        formData.append('action', 'accept-system-feedback');
+        fetch(`${api}/systemdash.php`, {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => response.text())
+        .then(text => {
+            document.writeln('<p>' + text + '</p>');
+        })
+        .catch(e => alert(e));
+    }
+
+    function list_description(){
+        api_link = `${api}/systemdash.php?action=list-system-description`;
+            fetch(api_link, {
+                method: 'GET',
+            })
+            .then(response => response.text())
+            .then(text => {
+                document.writeln('<p><hr>' + api_link + '<br><br>' + text + '</p>');
+            })
+            .catch(e => alert(e));
+    }
+</script>

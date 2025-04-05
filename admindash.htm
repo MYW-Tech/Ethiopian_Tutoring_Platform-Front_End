@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboared API</title>
+</head>
+<body>
+<script src="api.js"></script>
+
+    <h1>Admin Dashboared API</h1>
+    
+    <!-- <h1>Logout</h1>
+    <a href="#" onclick="window.location = `${api}/user.php?action=logout`">Logout</a> -->
+
+    <input type="file" name="systemImage" id="systemImage" accept="image/jpg, image/jpeg, image/png, image/gif"><br>
+    <textarea type="text" name="description" id="description" placeholder="System Description" rows="5" cols="25"></textarea><br>
+    <button onclick="add_system_description()">Add System Description</button>
+    
+    <script>
+        // function user_list(act,ID,id){
+        //     api_link = `${api}/admindash.php?action=${act}&${ID}=${id}`;
+        //     fetch(api_link, {
+        //         method: 'GET',
+        //     })
+        //     .then(response => response.text())
+        //     .then(text => {
+        //         document.writeln('<p><hr>' + api_link + '<br><br>' + text + '</p>');
+        //     })
+        //     .catch(e => alert(e));
+        // } 
+        
+        // user_list('list-admin');
+        // user_list('list-parent');
+        // user_list('list-student');
+        // user_list('list-tutor');
+
+        // user_list('deactivate-admin', 'adminID', '1');
+        // user_list('activate-admin', 'adminID', '1');
+
+        // user_list('deactivate-parent', 'parentID', '1');
+        // user_list('activate-parent', 'parentID', '1');
+
+        // user_list('deactivate-student', 'studentID', '1');
+        // user_list('activate-student', 'studentID', '1');
+
+        // user_list('deactivate-tutor', 'tutorID', '1');
+        // user_list('activate-tutor', 'tutorID', '1');
+
+        // user_list('delete-admin', 'adminID', '1');
+        // user_list('delete-parent', 'parentID', '1');
+        // user_list('delete-student', 'studentID', '1');
+        // user_list('delete-tutor', 'tutorID', '1');
+
+        // user_list('display-system-error', '','');
+        // user_list('list-system-feedback');
+
+        
+        // Update Profile!
+        // const formData = new FormData();
+        // formData.append('action', 'update-profile');
+        // formData.append('phoneNumber', '0912345678');
+
+        // fetch(`${api}/admindash.php`, {
+        //     method: 'POST',
+        //     body: formData,
+        // })
+        // .then(response => response.text())
+        // .then(text => {
+        //     document.writeln('<pre>' + text + '</pre>');
+        // })
+        // .catch(e => alert(e));
+
+
+        // Add System Description
+        function add_system_description(){
+            description = document.getElementById('description').value;
+            systemImage = document.getElementById('systemImage').files[0];
+
+            const formData = new FormData();
+            formData.append('action', 'add-system-description');
+            formData.append('description', description);
+            formData.append('systemImage', systemImage);
+
+            fetch(`${api}/admindash.php`, {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.text())
+            .then(text => {
+                document.writeln('<pre>' + text + '</pre>');
+            })
+            .catch(e => alert(e));
+        }
+    </script>    
+
+</body>
+</html>

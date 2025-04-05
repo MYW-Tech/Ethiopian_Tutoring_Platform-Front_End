@@ -6,298 +6,39 @@
     <title>User API</title>
 </head>
 <body>
+    <div class="container">
+        <h1>User Information</h1>
+        <center><img id="user-profileImage"></center><br>
+        <button onclick="fetchUserData()">Fetch User Data</button>
+        <pre id="userData"></pre>
+    </div>
 
-    <center><h1>User API</h1></center>
-    
-    <h1>Logout</h1>
-    <button onclick="logout()">Logout</button>
+    <script src="request.js"></script>
+    <script>
+        function fetchUserData() {
+            fetch(`${api_url}/user.php`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                document.getElementById('userData').textContent = JSON.stringify(data, null, 2);
 
-    <h1>User Information</h1>
-    <button onclick="user_info()">User Information</button>
-
-    <!-- <h1>Admin Signup</h1>
-    username: <input type="text" name="username" id="username"><br>
-    email: <input type="email" name="email" id="email"><br>
-    password: <input type="password" name="password" id="password"><br>
-    phoneNumber: <input type="tel" name="phoneNumber" id="phoneNumber"><br>
-    profileImage: <input type="file" name="profileImage" id="profileImage"><br>
-    <button onclick="signup()">Signup</button> -->
-    <h1>Admin Login</h1>
-    email: <input type="email" name="email" id="email"><br>
-    password: <input type="password" name="password" id="password"><br>
-    <button onclick="login()">Login</button>
-
-    <!-- <h1>Parent Signup</h1>
-    username: <input type="text" name="username" id="username"><br>
-    email: <input type="email" name="email" id="email"><br>
-    password: <input type="password" name="password" id="password"><br>
-    phoneNumber: <input type="tel" name="phoneNumber" id="phoneNumber"><br>
-    address: <input type="text" name="address" id="address"><br>
-    profileImage: <input type="file" name="profileImage" id="profileImage"><br>
-    <button onclick="signup()">Signup</button>  -->
-    <!-- <h1>Parent Login</h1>
-    email: <input type="email" name="email" id="email"><br>
-    password: <input type="password" name="password" id="password"><br>
-    <button onclick="login()">Login</button> -->
-
-    <!-- <h1>Student Signup</h1>
-    username: <input type="text" name="username" id="username"><br>
-    email: <input type="email" name="email" id="email"><br>
-    password: <input type="password" name="password" id="password"><br>
-    phoneNumber: <input type="tel" name="phoneNumber" id="phoneNumber"><br>
-    age: <input type="number" name="age" id="age"><br>
-    gradeLevel: <input type="text" name="gradeLevel" id="gradeLevel"><br>
-    preferredSubject: <input type="text" name="preferredSubject" id="preferredSubject"><br>
-    school: <input type="text" name="school" id="school"><br>
-    studentParentEmail: <input type="email" name="studentParentEmail" id="studentParentEmail"><br>
-    profileImage: <input type="file" name="profileImage" id="profileImage"><br>
-    <button onclick="signup()">Signup</button>  -->
-    <!-- <h1>Student Login</h1>
-    email: <input type="email" name="email" id="email"><br>
-    password: <input type="password" name="password" id="password"><br>
-    <button onclick="login()">Login</button> -->
-
-    <!-- <h1>Tutor Signup</h1>
-    username: <input type="text" name="username" id="username"><br>
-    email: <input type="email" name="email" id="email"><br>
-    password: <input type="password" name="password" id="password"><br>
-    phoneNumber: <input type="tel" name="phoneNumber" id="phoneNumber"><br>
-    specialization: <input type="text" name="specialization" id="specialization"><br>
-    exprienceYear: <input type="number" name="exprienceYear" id="exprienceYear"><br>
-    bio: <textarea name="bio" id="bio"></textarea><br>
-    gender: <input type="radio" name="gender" id="gender" value="MALE">Male
-            <input type="radio" name="gender" id="gender" value="FEMALE">Female<br>
-    school: <input type="text" name="school" id="school"><br>
-    address: <input type="text" name="address" id="address"><br>
-    profileImage: <input type="file" name="profileImage" id="profileImage"><br>
-    <button onclick="signup()">Signup</button>  -->
-    <!-- <h1>Student Login</h1>
-    email: <input type="email" name="email" id="email"><br>
-    password: <input type="password" name="password" id="password"><br>
-    <button onclick="login()">Login</button> -->
-
-
+                if(data.imagePath){
+                    const profileImage = document.getElementById('user-profileImage');
+                    profileImage.src = data.imagePath + data.profileImage;
+                    profileImage.alt = data.username + "'s Prfole Image";
+                    profileImage.style.display = 'block';
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('Error:', error);
+            });
+        }
+    </script>
 </body>
-<!-- <script src="api.js"></script> -->
-<script>
-    const api = "http://localhost/Ethiopian_Tutoring_Platform/Ethiopian_Tutoring_Platform-Back_End/";
-    function logout(){
-        fetch(`${api}/user.php?action=logout`, {
-            method: 'GET',
-        })
-        .then(response => response.text())
-        .then(text => {
-            document.writeln('<pre>' + text + '</pre>');
-        })
-        .catch(e => alert(e));
-    }
-
-    function user_info(){
-        fetch(`${api}/user.php`, {
-            method: 'GET',
-        })
-        .then(response => response.text())
-        .then(text => {
-            document.writeln('<pre>' + text + '</pre>');
-        })
-        .catch(e => alert(e));
-    }
-
-    // function signup(){
-    //     username = document.getElementById('username').value;
-    //     email = document.getElementById('email').value;
-    //     password = document.getElementById('password').value;
-    //     phoneNumber = document.getElementById('phoneNumber').value;
-    //     profileImage = document.getElementById('profileImage').files[0];
-    //     const formData = new FormData();
-    //     formData.append('username', username);
-    //     formData.append('email', email);
-    //     formData.append('password', password);
-    //     formData.append('phoneNumber', phoneNumber);
-    //     formData.append('profileImage', profileImage);
-    //     formData.append('role', 'admin');
-    //     formData.append('action', 'signup');
-    //     fetch(`${api}/user.php`, {
-    //         method: 'POST',
-    //         body: formData,
-    //     })
-    //     .then(response => response.text())
-    //     .then(text => {
-    //         document.writeln('<pre>' + text + '</pre>');
-    //     })
-    //     .catch(e => alert(e));
-    // }
-    function login(){
-        email = document.getElementById('email').value;
-        password = document.getElementById('password').value;
-        const formData = new FormData();
-        formData.append('email', email);
-        formData.append('password', password);
-        formData.append('role', 'admin');
-        formData.append('action', 'login');
-        fetch(`${api}/user.php`, {
-            method: 'POST',
-            body: formData,
-        })
-        .then(response => response.text())
-        .then(text => {
-            document.writeln('<pre>' + text + '</pre>');
-        })
-        .catch(e => alert(e));
-    }
-
-    // function signup(){
-    //     username = document.getElementById('username').value;
-    //     email = document.getElementById('email').value;
-    //     password = document.getElementById('password').value;
-    //     phoneNumber = document.getElementById('phoneNumber').value;
-    //     address = document.getElementById('address').value;
-    //     profileImage = document.getElementById('profileImage').files[0];
-    //     const formData = new FormData();
-    //     formData.append('username', username);
-    //     formData.append('email', email);
-    //     formData.append('password', password);
-    //     formData.append('phoneNumber', phoneNumber);
-    //     formData.append('address', address);
-    //     formData.append('profileImage', profileImage);
-    //     formData.append('role', 'parent');
-    //     formData.append('action', 'signup');
-    //     fetch(`${api}/user.php`, {
-    //         method: 'POST',
-    //         body: formData,
-    //     })
-    //     .then(response => response.text())
-    //     .then(text => {
-    //         document.writeln('<pre>' + text + '</pre>');
-    //     })
-    //     .catch(e => alert(e));
-    // }
-    // function login(){
-    //     email = document.getElementById('email').value;
-    //     password = document.getElementById('password').value;
-    //     const formData = new FormData();
-    //     formData.append('email', email);
-    //     formData.append('password', password);
-    //     formData.append('role', 'parent');
-    //     formData.append('action', 'login');
-    //     fetch(`${api}/user.php`, {
-    //         method: 'POST',
-    //         body: formData,
-    //     })
-    //     .then(response => response.text())
-    //     .then(text => {
-    //         document.writeln('<pre>' + text + '</pre>');
-    //     })
-    //     .catch(e => alert(e));
-    // }
-
-    // function signup(){
-    //     username = document.getElementById('username').value;
-    //     email = document.getElementById('email').value;
-    //     password = document.getElementById('password').value;
-    //     phoneNumber = document.getElementById('phoneNumber').value;
-    //     age = document.getElementById('age').value;
-    //     gradeLevel = document.getElementById('gradeLevel').value;
-    //     preferredSubject = document.getElementById('preferredSubject').value;
-    //     school = document.getElementById('school').value;
-    //     studentParentEmail = document.getElementById('studentParentEmail').value;
-    //     profileImage = document.getElementById('profileImage').files[0];
-    //     const formData = new FormData();
-    //     formData.append('username', username);
-    //     formData.append('email', email);
-    //     formData.append('password', password);
-    //     formData.append('phoneNumber', phoneNumber);
-    //     formData.append('age', age);
-    //     formData.append('gradeLevel', gradeLevel);
-    //     formData.append('preferredSubject', preferredSubject);
-    //     formData.append('school', school);
-    //     formData.append('studentParentEmail', studentParentEmail);
-    //     formData.append('profileImage', profileImage);
-    //     formData.append('role', 'student');
-    //     formData.append('action', 'signup');
-    //     fetch(`${api}/user.php`, {
-    //         method: 'POST',
-    //         body: formData,
-    //     })
-    //     .then(response => response.text())
-    //     .then(text => {
-    //         document.writeln('<pre>' + text + '</pre>');
-    //     })
-    //     .catch(e => alert(e));
-    // }
-    // function login(){
-    //     email = document.getElementById('email').value;
-    //     password = document.getElementById('password').value;
-    //     const formData = new FormData();
-    //     formData.append('email', email);
-    //     formData.append('password', password);
-    //     formData.append('role', 'student');
-    //     formData.append('action', 'login');
-    //     fetch(`${api}/user.php`, {
-    //         method: 'POST',
-    //         body: formData,
-    //     })
-    //     .then(response => response.text())
-    //     .then(text => {
-    //         document.writeln('<pre>' + text + '</pre>');
-    //     })
-    //     .catch(e => alert(e));
-    // }
-
-    // function signup(){
-    //     username = document.getElementById('username').value;
-    //     email = document.getElementById('email').value;
-    //     password = document.getElementById('password').value;
-    //     phoneNumber = document.getElementById('phoneNumber').value;
-    //     specialization = document.getElementById('specialization').value;
-    //     exprienceYear = document.getElementById('exprienceYear').value;
-    //     bio = document.getElementById('bio').value;
-    //     gender = document.querySelector('input[name="gender"]:checked').value;
-    //     school = document.getElementById('school').value;
-    //     address = document.getElementById('address').value;
-    //     profileImage = document.getElementById('profileImage').files[0];
-    //     const formData = new FormData();
-    //     formData.append('username', username);
-    //     formData.append('email', email);
-    //     formData.append('password', password);
-    //     formData.append('phoneNumber', phoneNumber);
-    //     formData.append('specialization', specialization);
-    //     formData.append('exprienceYear', exprienceYear);
-    //     formData.append('bio', bio);
-    //     formData.append('gender', gender);
-    //     formData.append('school', school);
-    //     formData.append('address', address);
-    //     formData.append('profileImage', profileImage);
-    //     formData.append('role', 'tutor');
-    //     formData.append('action', 'signup');
-    //     fetch(`${api}/user.php`, {
-    //         method: 'POST',
-    //         body: formData,
-    //     })
-    //     .then(response => response.text())
-    //     .then(text => {
-    //         document.writeln('<pre>' + text + '</pre>');
-    //     })
-    //     .catch(e => alert(e));
-    // }
-    // function login(){
-    //     email = document.getElementById('email').value;
-    //     password = document.getElementById('password').value;
-    //     const formData = new FormData();
-    //     formData.append('email', email);
-    //     formData.append('password', password);
-    //     formData.append('role', 'tutor');
-    //     formData.append('action', 'login');
-    //     fetch(`${api}/user.php`, {
-    //         method: 'POST',
-    //         body: formData,
-    //     })
-    //     .then(response => response.text())
-    //     .then(text => {
-    //         document.writeln('<pre>' + text + '</pre>');
-    //     })
-    //     .catch(e => alert(e));
-    // }
-
-</script>
 </html>
