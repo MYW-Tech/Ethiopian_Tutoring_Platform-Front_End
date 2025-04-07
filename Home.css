@@ -346,6 +346,6 @@ header {
 
     /* Show menu when active */
     .nav-menu.active {
-        display: flex;
+        display: block;
     }
 }
