@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="sign_up.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <a href="signup.html" class="home-icon">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+    <div class="container">
+        <div class="header">
+            <svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                <path fill="#4A7D99" fill-opacity="1" d="M0,128L120,138.7C240,149,480,171,720,160C960,149,1200,107,1320,85.3L1440,64V0H0Z"></path>
+            </svg>
+            <h2 class="title">Sign Up</h2>
+        </div>
+
+        <!-- <form class="signup-form" enctype="multipart/form-data" onsubmit="return parentSubmit()"> -->
+    
+            <label for="name">Full Name:</label>
+            <div class="input-container">
+                <i class="fas fa-user"></i>
+                <input type="text" id="name" name="username" required placeholder="Enter your full name">
+            </div>
+        
+            <label for="email">Email:</label>
+            <div class="input-container">
+                <i class="fas fa-envelope"></i>
+                <input type="email" id="email" name="email" required placeholder="Enter your email">
+            </div>
+        
+            <label for="password">Password:</label>
+            <div class="input-container">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="password" name="password" required placeholder="Enter your password">
+            </div>
+        
+            <label for="phone">Phone Number:</label>
+            <div class="input-container">
+                <i class="fas fa-phone"></i>
+                <input type="text" id="phone" name="phoneNumber" required placeholder="Enter your phone number">
+            </div>
+        
+            <label for="address">Address:</label>
+            <div class="input-container">
+                <i class="fas fa-map-marker-alt"></i>
+                <input type="text" id="address" name="address" required placeholder="Enter your address">
+            </div>
+        
+            <label for="profile">Upload Profile Image:</label>
+            <input type="file" id="profile" name="profileImage">
+        
+            <button type="submit" class="sign-in-btn" onclick="parentSubmit()">Sign Up</button>
+            <p class="login-link">Already have an account? <a href="#">Login</a></p>
+        <!-- </form> -->
+        
+    </div>
+    <script>
+
+const api_url = "http://localhost/Ethiopian_Tutoring_Platform/Ethiopian_Tutoring_Platform-Back_End/";
+function parentSubmit() {
+    const username = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const phoneNumber = document.getElementById('phone').value;
+    const address = document.getElementById('address').value;
+    // const role = document.getElementById('role').value;   // It does generate an error
+    const profileImage = document.getElementById('profile').files[0];
+
+    const formData = new FormData();
+    formData.append('profileImage', profileImage);
+    formData.append('username', username);
+    formData.append('email', email);
+    formData.append('password', password);
+    formData.append('phoneNumber', phoneNumber);
+    formData.append('address', address);
+    formData.append('role', 'parent'); // Asigning the role is 'parent'
+    formData.append('action', 'signup');
+
+    fetch(`${api_url}/user.php`, {
+        method: 'POST',
+        body: formData,
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            alert('Signup successful!');
+            window.location = 'parent_signup.html';
+        } else {
+            alert('Signup failed: ' + data.data);
+        }
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        alert('Error: ' + error);
+    });
+
+    return false;
+}
+
+function login() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const role = document.getElementById('role').value;
+
+    const formData = new FormData();
+    formData.append('email', email);
+    formData.append('password', password);
+    formData.append('role', role);
+    formData.append('action', 'login');
+    
+    fetch(`${api_url}/user.php`, {
+        method: 'POST',
+        body: formData,
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            alert('Login successful!');
+            window.location = 'user.htm';
+        } else {
+            alert('Login failed: ' + data.data);
+        }
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        alert('Error: ' + error);
+    });
+
+    return false;
+}
+
+function logout() {
+    const data = {
+        action: 'logout',
+        email: document.getElementById('email').value,
+    };
+
+    fetch(`${api_url}/user.php?${new URLSearchParams(data).toString()}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            alert('Logout successful!');
+        } else {
+            alert('Logout failed: ' + data.data);
+        }
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        alert('Error: ' + error);
+    });    
+}
+    </script>
+</body>
+</html>
