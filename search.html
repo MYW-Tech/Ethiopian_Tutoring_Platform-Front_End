@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Find Tutors by Address</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .search-box {
+            margin-bottom: 20px;
+        }
+        .search-box input {
+            padding: 8px;
+            width: 300px;
+            font-size: 16px;
+        }
+        .tutor-json {
+            background: #f9f9f9;
+            border-left: 5px solid #4CAF50;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        pre {
+            white-space: pre-wrap;
+        }
+        #pagination-controls button {
+            margin: 0 4px;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Find Tutors by Address</h2>
+
+<div class="search-box">
+    <input type="text" id="addressSearch" placeholder="Enter address or area...">
+</div>
+
+<div id="tutors-container"></div>
+<div id="pagination-controls"></div>
+
+<script>
+ 
+    const api_url = "http://localhost/Ethiopian_Tutoring_Platform/Ethiopian_Tutoring_Platform-Back_End/user.php";
+
+    let tutorsData = [];
+    let filteredTutors = [];
+    let currentPage = 1;
+    const tutorsPerPage = 10;
+
+    function fetchTutors() {
+        fetch(api_url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            const tutors = Array.isArray(data) ? data : [data];
+            tutorsData = tutors.filter(tutor => tutor.role === 'tutor');
+            filteredTutors = tutorsData;
+            currentPage = 1;
+            displayTutors();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('tutors-container').innerHTML = `
+                <p>Failed to load tutors. Please try again later.</p>
+                <button onclick="fetchTutors()">Retry</button>
+            `;
+        });
+    }
+
+    function displayTutors() {
+        const container = document.getElementById('tutors-container');
+        container.innerHTML = '';
+
+        const startIndex = (currentPage - 1) * tutorsPerPage;
+        const endIndex = startIndex + tutorsPerPage;
+        const paginatedTutors = filteredTutors.slice(startIndex, endIndex);
+
+        if (paginatedTutors.length === 0) {
+            container.innerHTML = '<p>No tutors found for the given address.</p>';
+            return;
+        }
+
+        paginatedTutors.forEach(tutor => {
+            const div = document.createElement('div');
+            div.className = 'tutor-json';
+            div.innerHTML = `
+                <strong>Name:</strong> ${tutor.name || 'N/A'}<br>
+                <strong>Email:</strong> ${tutor.email || 'N/A'}<br>
+                <strong>Phone:</strong> ${tutor.phone || 'N/A'}<br>
+                <strong>Subject:</strong> ${tutor.subject || 'N/A'}<br>
+                <strong>Address:</strong> ${tutor.address || 'N/A'}<br>
+                <hr>
+            `;
+            container.appendChild(div);
+        });
+
+        renderPaginationControls();
+    }
+
+    function renderPaginationControls() {
+        const totalPages = Math.ceil(filteredTutors.length / tutorsPerPage);
+        const controlsContainer = document.getElementById('pagination-controls');
+        controlsContainer.innerHTML = '';
+
+        for (let i = 1; i <= totalPages; i++) {
+            const button = document.createElement('button');
+            button.textContent = i;
+            button.disabled = i === currentPage;
+            button.addEventListener('click', () => {
+                currentPage = i;
+                displayTutors();
+            });
+            controlsContainer.appendChild(button);
+        }
+    }
+
+    // 🔍 Filter tutors by address input
+    document.getElementById('addressSearch').addEventListener('input', function () {
+        const searchTerm = this.value.trim().toLowerCase();
+
+        if (searchTerm === '') {
+            filteredTutors = [];
+        } else {
+            filteredTutors = tutorsData.filter(tutor =>
+                tutor.address && tutor.address.toLowerCase().includes(searchTerm)
+            );
+        }
+
+        currentPage = 1;
+        displayTutors();
+    });
+
+    window.addEventListener('DOMContentLoaded', fetchTutors);
+</script>
+
+</body>
+</html>
