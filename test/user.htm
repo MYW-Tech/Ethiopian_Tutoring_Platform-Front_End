@@ -2,119 +2,115 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Information</title>
+    <title>All Tutors JSON</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
         }
-
-        .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 300px;
-        }
-
-        .container pre {
-            text-align: left;
-            background-color: #f4f4f4;
+        .tutor-json {
+            background: #f4f4f4;
             padding: 10px;
-            border-radius: 4px;
-            overflow-x: auto;
-            max-height: 300px;
+            margin-bottom: 15px;
+            border-left: 4px solid #2196F3;
         }
-
-        .container button {
-            background-color: #007BFF;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        #pagination-controls button {
+            margin: 0 3px;
+            padding: 5px 10px;
             cursor: pointer;
-            transition: background-color 0.3s;
-            margin-top: 10px;
         }
-
-        .container button:hover {
-            background-color: #0056b3;
-        }
-
-        .container img {
-            width: 100px;
-            display: none;
-            border: 3px solid green;
-            border-radius: 50%;
+        #pagination-controls button:disabled {
+            background-color: #ddd;
+            cursor: default;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>User Information</h1>
-        <center><img id="user-profileImage" alt="Profile Image"></center><br>
-        <p id="name"></p>
-        <p id="specialization"></p>
-        <pre id="userData">Loading...</pre>
-        <button onclick="fetchUserData()">Fetch</button>
-    </div>
 
-    <script>
-        const api_url = "http://localhost/Ethiopian_Tutoring_Platform/Ethiopian_Tutoring_Platform-Back_End/user.php";
-        // Replace with your real API base URL
+<h2>All Tutors (Full JSON Format)</h2>
+<div id="tutors-container"></div>
+<div id="pagination-controls"></div>
 
-        function fetchUserData() {
-            fetch(`${api_url}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Success:', data);
+<script>
+    const api_url = "http://localhost/Ethiopian_Tutoring_Platform/Ethiopian_Tutoring_Platform-Back_End/user.php";
 
-                // Always display the JSON
-                document.getElementById('userData').textContent = JSON.stringify(data, null, 2);
+    let tutorsData = [];
+    let currentPage = 1;
+    const tutorsPerPage = 10;
 
-                // Only show profile info if user is an admin
-                if (data.role === 'tutor') {
-                    const profileImage = document.getElementById('user-profileImage');
-                    profileImage.src = data.profileImage;
-                    profileImage.alt = `${data.username}'s Profile Image`;
-                    profileImage.style.display = 'block';
+    function fetchTutors() {
+        fetch(api_url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            const tutors = Array.isArray(data) ? data : [data];
+            tutorsData = tutors.filter(tutor => tutor.role === 'tutor');
+            currentPage = 1;
+            displayAllTutorsJSON();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('tutors-container').innerHTML = `
+                <div class="error-message">
+                    <p>Failed to load tutors. Please try again later.</p>
+                    <button onclick="fetchTutors()">Retry</button>
+                </div>
+            `;
+        });
+    }
 
-                    const nameElement = document.getElementById('name');
-                    nameElement.textContent = data.username;
-                    nameElement.style.fontSize = '20px';
-                    nameElement.style.fontWeight = 'bold';
+    function displayAllTutorsJSON() {
+        const container = document.getElementById('tutors-container');
+        container.innerHTML = '';
 
-                    const specialization = document.getElementById('specialization');
-                    specialization.textContent = data.specialization;
-                    specialization.style.fontSize = '16px';
-                }
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-                document.getElementById('userData').textContent = 'Failed to fetch data. Check console for details.';
-            });
+        const startIndex = (currentPage - 1) * tutorsPerPage;
+        const endIndex = startIndex + tutorsPerPage;
+        const paginatedTutors = tutorsData.slice(startIndex, endIndex);
+
+        if (paginatedTutors.length === 0) {
+            container.innerHTML = '<p>No tutors found.</p>';
+            return;
         }
 
-        // Fetch automatically on load
-        fetchUserData();
-    </script>
+        paginatedTutors.forEach(tutor => {
+            const tutorDiv = document.createElement('div');
+            tutorDiv.className = 'tutor-json';
+            tutorDiv.innerHTML = `
+                <pre>${JSON.stringify(tutor, null, 2)}</pre>
+            `;
+            container.appendChild(tutorDiv);
+        });
+
+        renderPaginationControls();
+    }
+
+    function renderPaginationControls() {
+        const totalPages = Math.ceil(tutorsData.length / tutorsPerPage);
+        const controlsContainer = document.getElementById('pagination-controls');
+        controlsContainer.innerHTML = '';
+
+        for (let i = 1; i <= totalPages; i++) {
+            const button = document.createElement('button');
+            button.textContent = i;
+            button.disabled = i === currentPage;
+            button.addEventListener('click', () => {
+                currentPage = i;
+                displayAllTutorsJSON();
+            });
+            controlsContainer.appendChild(button);
+        }
+    }
+
+    // Trigger fetch on page load
+    window.addEventListener('DOMContentLoaded', fetchTutors);
+</script>
+
 </body>
 </html>
