@@ -3,99 +3,305 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Success Tutor</title>
+    <title>Success Tutor - Find the Best Tutors</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="Home.css">
     <script defer src="Home.js"></script>
 </head>
 <body>
-
     <!-- Navigation Bar -->
-    <header>
-        <div class="menu-toggle" id="menu-toggle">&#9776;</div> <!-- Hamburger Menu -->
-        <nav class="nav-menu" id="nav-menu">
-            <ul>
-                <li><a href="register.html">Find Work</a></li>
-                <li><a href="#">Find Talent</a></li>
-                <li><a href="#">AI Services</a></li>
-                <li><a href="login.html">Login</a></li>
-            </ul>
-        </nav>
+    <header class="header">
+        <div class="container">
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="logo-container">
+                <div class="logo">Success<span>Tutor</span></div>
+                <!-- <div class="amharic-logo">አስጠኚ <span>ይፈልጋሉ?</span></div> -->
+           
 
-        <div class="logo">Success Tutor</div>
-        <div class="logo">አስጠኚ ይፈልጋሉ?</div>
+            
 
-        <div class="nav-right">
-            <span class="search-icon" id="search">&#128269;</span>
-            <a href="signup.html" class="signup">Sign up</a>
+            <nav class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="register.html" class="nav-link">Find Work</a></li>
+                    <li><a href="#" class="nav-link">Find Talent</a></li>
+                    <li><a href="#" class="nav-link">AI Services</a></li>
+                    <li><a href="login.html" class="nav-link">Login</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-right" id="nav-right">
+                <div class="search-container" id="search-container">
+                    <input type="text" placeholder="Search..." class="search-input" id="search-input">
+                    <button class="search-btn" id="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <a href="signup.html" class="btn signup btn-primary">Sign up</a>
+            </div>
         </div>
+    </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-images">
-            <img src="images/man.jpg" alt="Man working">
-            <img src="images/woman.jpg" alt="Woman working">
-        </div>
-        <div class="hero-content">
-            <h1>We connect people to bring successful Tutor </h1>
-            <p>Find high-quality talent or open jobs for Parents and Tutors with the help of AI tools that keep you in control.</p>
-        </div>
-    </section>
-    
-    <h1 style="text-align:center;">Hire a Tutor</h1>
-
-    <div id="tutors-container" class="tutors-grid"></div>
-    <div id="pagination" style="margin-top: 20px;"></div>
-    
-   <script src="fetching.js"></script>
-
-
-
-    <!-- Footer -->
-    <footer class="footer" id="footer">
-        <div class="footer-container">
-            <div class="footer-logo">
-                <div class="social-icons">
-                    <a style="color: blue; background-color: white;" href="https://facebook.com" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
-                    <a style="background-image: linear-gradient(to bottom,purple,red,yellow); color:white;font-weight: bolder;"  href="https://instagram.com" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a style="color: red; background-color: wheat;" href="https://youtube.com" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">We connect people to bring successful learning</h1>
+                <p class="hero-subtitle">Find high-quality tutors or teaching opportunities with AI-powered matching that puts you in control.</p>
+                <div class="hero-cta">
+                    <a href="register.html" class="btn btn-primary">Find a Tutor</a>
+                    <a href="signup.html" class="btn btn-outline">Become a Tutor</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Qualified Tutors</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">95%</span>
+                        <span class="stat-label">Success Rate</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Support</span>
+                    </div>
                 </div>
             </div>
-            <div class="footer-links">
-                <h3>Useful Links</h3>
-                <ul>
-                    <li><a href="#">Terms of Service</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                </ul>
-            </div>
-            <div class="footer-contact">
-                <h3>Contact Info</h3>
-                <p>Email: <a href="mailto:walelign2129@gmail.com">MYW_Tech@gmail.com</a></p>
-                <p>Phone: <a href="tel:+12023862702">+2519222840235</a></p>
+            <div class="hero-images">
+                <div class="image-container">
+                    <img src="images/t1.jpg" alt="Tutor teaching" class="hero-image">
+                    <img src="t2.webp" alt="Student learning" class="hero-image">
+                    <div class="image-overlay"></div>
+                </div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025. All Rights Reserved.</p>
-            <p>&#64; Developed by MYW_Tech</p>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose Success Tutor?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3>Verified Tutors</h3>
+                    <p>All tutors undergo thorough background checks and qualification verification.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Performance Tracking</h3>
+                    <p>Monitor progress with real-time analytics and regular progress reports.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h3>Affordable Rates</h3>
+                    <p>Quality education at prices that work for families of all budgets.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3>Flexible Learning</h3>
+                    <p>Choose between in-person or online sessions to fit your schedule.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tutors Section -->
+    <section class="tutors-section">
+        <div class="container">
+            <h2 class="section-title">Hire a Tutor</h2>
+            <div class="filter-bar">
+                <div class="filter-group">
+                    <label for="subject-filter">Subject:</label>
+                    <select id="subject-filter" class="filter-select">
+                        <option value="all">All Subjects</option>
+                        <option value="math">Mathematics</option>
+                        <option value="science">Science</option>
+                        <option value="english">English</option>
+                        <option value="amharic">Amharic</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="level-filter">Level:</label>
+                    <select id="level-filter" class="filter-select">
+                        <option value="all">All Levels</option>
+                        <option value="elementary">Elementary</option>
+                        <option value="highschool">High School</option>
+                        <option value="college">College</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="location-filter">Location:</label>
+                    <select id="location-filter" class="filter-select">
+                        <option value="all">All Locations</option>
+                        <option value="addis">Addis Ababa</option>
+                        <option value="online">Online Only</option>
+                    </select>
+                </div>
+            </div>
+            <div id="tutors-container" class="tutors-grid"></div>
+            <div id="pagination" class="pagination"></div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Clients Say</h2>
+            <div class="testimonials-slider">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Success Tutor helped my daughter improve her math grades from C to A in just 3 months. The tutor was patient and really understood her learning style."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Client" class="author-img">
+                        <div class="author-info">
+                            <h4>Alemnesh Kassahun</h4>
+                            <p>Parent, Addis Ababa</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p>"As a tutor, I've found great students through this platform. The payment system is reliable and the support team is always helpful when I have questions."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Tutor" class="author-img">
+                        <div class="author-info">
+                            <h4>Yohannes Tekle</h4>
+                            <p>Math Tutor</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Start Learning?</h2>
+                <p>Join thousands of students and tutors who are achieving their educational goals with Success Tutor.</p>
+                <div class="cta-buttons">
+                    <a href="signup.html" class="btn btn-primary">Find a Tutor</a>
+                    <a href="register.html" class="btn btn-outline-light">Become a Tutor</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="footer-logo">Success<span>Tutor</span></div>
+                    <p>Connecting students with qualified tutors to achieve academic success through personalized learning experiences.</p>
+                    <div class="social-icons">
+                        <a href="https://facebook.com" target="_blank" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com" target="_blank" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://youtube.com" target="_blank" class="social-icon youtube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://telegram.com" target="_blank" class="social-icon telegram"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="register.html">Find Work</a></li>
+                        <li><a href="#">Find Talent</a></li>
+                        <li><a href="#">AI Services</a></li>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="signup.html">Sign Up</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Tutoring Tips</a></li>
+                        <li><a href="#">Study Guides</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:walelign2129@gmail.com">MYW_Tech@gmail.com</a></p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+2519222840235">+251 922 284023</a></p>
+                    <p><i class="fas fa-map-marker-alt"></i> Addis Ababa, Ethiopia</p>
+                    <div class="newsletter">
+                        <h4>Subscribe to our newsletter</h4>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Your email address">
+                            <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Success Tutor. All Rights Reserved.</p>
+                <div class="legal-links">
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+                <p class="developer-credit">&#64; Developed by MYW_Tech</p>
+            </div>
         </div>
     </footer>
 
-    <!-- <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+    <script src="fetching.js"></script>
     <script>
-        const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_AUTH_DOMAIN",
-            databaseURL: "YOUR_DATABASE_URL",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_STORAGE_BUCKET",
-            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-            appId: "YOUR_APP_ID"
-        };
-        firebase.initializeApp(firebaseConfig);
-        const database = firebase.database();
-    </script> -->
-
+        document.addEventListener("DOMContentLoaded", function () {
+            const toggle = document.getElementById('menu-toggle');
+            const menu = document.getElementById('nav-menu');
+            const searchBtn = document.getElementById('search-btn');
+            const navRight = document.querySelector('.nav-right');            
+            // Mobile menu toggle
+            toggle.addEventListener('click', () => {
+                toggle.classList.toggle('active');
+                menu.classList.toggle('active');
+                navRight.classList.toggle('active');});
+            
+            // Search toggle
+            searchBtn.addEventListener('click', () => {
+                searchContainer.classList.toggle('active');
+            });
+            
+            // Close search when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!searchContainer.contains(e.target) && e.target !== searchBtn) {
+                    searchContainer.classList.remove('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

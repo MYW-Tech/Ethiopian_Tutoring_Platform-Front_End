@@ -259,47 +259,9 @@ console.error('Error:', error);
 alert('Error: ' + error);
 }); 
 }
-
-// fetching user data for profile display
-const API_URL = "http://localhost/Ethiopian_Tutoring_Platform/Ethiopian_Tutoring_Platform-Back_End/user.php"; 
-const tutorContainer = document.getElementById("tutorList");
-
-async function fetchTutors() {
-    try {
-        const response = await fetch(API_URL);
-        const tutors = await response.json();
-
-        if (!Array.isArray(tutors)) {
-            console.error("Invalid API response format.");
-            return;
-        }
-
-        tutorContainer.innerHTML = ""; // Clear existing content
-
-        tutors.forEach(tutor => {
-            const tutorCard = document.createElement("div");
-            tutorCard.classList.add("tutor-card");
-
-            tutorCard.innerHTML = `
-                <img src="${tutor.profileImage ? tutor.profileImage : 'https://via.placeholder.com/100'}" alt="${tutor.username}">
-                <h2>${tutor.username}</h2>
-                <p><strong>Specialization:</strong> ${tutor.specialization}</p>
-                <p><strong>Fee:</strong> ${tutor.feeAmount} ETB per session</p>
-                <button class="see-more-btn" onclick="seeMore('${tutor.tutorID}')">See More</button>
-            `;
-
-            tutorContainer.appendChild(tutorCard);
-        });
-
-    } catch (error) {
-        console.error("Error fetching tutor data:", error);
+// Optional fetchTutors or other actions on load
+document.addEventListener('DOMContentLoaded', () => {
+    if (typeof fetchTutors === 'function') {
+        fetchTutors();
     }
-}
-
-function seeMore(tutorID) {
-    // Redirect to the new page with the selected tutor's ID
-    window.location.href = `tutor_details.html?tutorID=${tutorID}`;
-}
-
-// Fetch tutors on page load
-document.addEventListener("DOMContentLoaded", fetchTutors);
+});

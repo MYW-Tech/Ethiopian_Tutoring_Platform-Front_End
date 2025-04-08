@@ -184,5 +184,62 @@ function renderPagination() {
     paginationContainer.appendChild(seeMoreBtn);
 }
 
+function login() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const role = document.getElementById('role').value;
+    
+    const formData = new FormData();
+    formData.append('email', email);
+    formData.append('password', password);
+    formData.append('role', role);
+    formData.append('action', 'login');
+    fetch(`${api_url}/user.php`, {
+    method: 'POST',
+    body: formData,
+    })
+    .then(response => response.json())
+    .then(data => {
+    if (data.status === 'success') {
+    alert('Login successful!');
+    window.location = 'user.htm';
+    } else {
+    alert('Login failed: ' + data.data);
+    }
+    })
+    .catch((error) => {
+    console.error('Error:', error);
+    alert('Error: ' + error);
+    });
+    
+    return false;
+    }
+    
+    function logout() {
+    const data = {
+    action: 'logout',
+    email: document.getElementById('email').value,
+    };
+    
+    fetch(`${api_url}/user.php?${new URLSearchParams(data).toString()}`, {
+    method: 'GET',
+    headers: {
+    'Content-Type': 'application/json'
+    }
+    })
+    .then(response => response.json())
+    .then(data => {
+    if (data.status === 'success') {
+    alert('Logout successful!');
+    } else {
+    alert('Logout failed: ' + data.data);
+    }
+    })
+    .catch((error) => {
+    console.error('Error:', error);
+    alert('Error: ' + error);
+    }); 
+    }
+    
 // Initialize when page loads
 document.addEventListener('DOMContentLoaded', fetchTutors);

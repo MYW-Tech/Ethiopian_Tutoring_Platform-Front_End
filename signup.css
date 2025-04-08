@@ -1,102 +1,213 @@
+:root {
+  --primary: #4361ee;
+  --primary-light: #4895ef;
+  --secondary: #3f37c9;
+  --accent: #f72585;
+  --dark: #1a1a2e;
+  --light: #f8f9fa;
+  --success: #4cc9f0;
+  --card-bg: #ffffff;
+}
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body, html {
-    height: 100%;
-    background-color: rgb(212, 208, 208);
-    
-    font-family: Arial, sans-serif;
-  }
-  .home-icon {
-    position: absolute;
-    top: 20px;
-    left: 30px;
-    font-size: 24px;
-    color: #000000;
-    text-decoration: none;
-    transition: color 0.3s;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
+
+body {
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 900px;
+  background-color: var(--card-bg);
+  border-radius: 20px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  position: relative;
+}
+
+.header {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  color: white;
+  padding: 30px;
+  text-align: center;
+  position: relative;
+}
+
+.home-icon {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  color: white;
+  font-size: 1.5rem;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
 .home-icon:hover {
-    color: #2c5d73;
+  transform: translateX(-5px);
 }
-  
-  .container {
-    width: 100%;
-    
-    margin: auto;
-    height: 100vh;
-    text-align: center;
-  }
-  
+
+.header .text {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-top: 10px;
+  letter-spacing: 0.5px;
+}
+
+.profile-icon {
+  margin-top: 20px;
+}
+
+.profile-icon span {
+  font-size: 4rem;
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+  border-radius: 50%;
+  backdrop-filter: blur(5px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.content {
+  padding: 40px;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.role-btn {
+  background: white;
+  border: none;
+  border-radius: 12px;
+  padding: 25px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.role-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: var(--primary);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  transform-origin: left;
+}
+
+.role-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.role-btn:hover::before {
+  transform: scaleX(1);
+}
+
+.role-btn i {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  color: var(--primary);
+}
+
+.role-btn a {
+  text-decoration: none;
+  color: var(--dark);
+  font-weight: 600;
+  font-size: 1.1rem;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.signup-text {
+  text-align: center;
+  margin-top: 40px;
+  color: var(--dark);
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.signup-text p {
+  position: relative;
+  display: inline-block;
+}
+
+.signup-text p::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  border-radius: 3px;
+}
+
+/* Role-specific colors */
+.role-btn:nth-child(1):hover::before { background: #4361ee; } /* Tutor */
+.role-btn:nth-child(2):hover::before { background: #4cc9f0; } /* Student */
+.role-btn:nth-child(3):hover::before { background: #f72585; } /* Parent */
+.role-btn:nth-child(4):hover::before { background: #3a0ca3; } /* Admin */
+
+.role-btn:nth-child(1) i { color: #4361ee; }
+.role-btn:nth-child(2) i { color: #4cc9f0; }
+.role-btn:nth-child(3) i { color: #f72585; }
+.role-btn:nth-child(4) i { color: #3a0ca3; }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
   .header {
-    position: relative;
-    background-color: #2b7a78;
-    height: 180px;
-    width: 100%;
-  }
-  .header .text{
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 30px;
-    font-weight: bold;
-    color: white;
-    text-align: center;
+    padding: 20px;
   }
   
-  .wave {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 90px;
-    background-color: rgb(212, 208, 208);
-    border-top-left-radius: 100% 70px;
-    border-top-right-radius: 0% -8px;
-    border-color: black;
+  .header .text {
+    font-size: 1.8rem;
   }
   
-  .profile-icon {
-    position: absolute;
-    bottom: 0px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #888;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
-    color: white;
+  .content {
+    padding: 30px 20px;
   }
   
   .buttons {
-    margin-top: 80px;
-    display: flex;
-    justify-content: center;
-    gap: 5px;
+    grid-template-columns: 1fr 1fr;
   }
-  button a {
-    text-decoration: none;
-    color: white;
+}
+
+@media (max-width: 480px) {
+  .buttons {
+    grid-template-columns: 1fr;
   }
   
   .role-btn {
-    background-color: blue;
-    color: white;
-    padding: 10px;
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
+    padding: 20px 15px;
   }
-  
-  .signup-text {
-    margin-top: 100px;
-    font-size: 18px;
-  }
-  
+}

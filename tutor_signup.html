@@ -3,111 +3,443 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
-    <link rel="stylesheet" href="sign_up.css">
+    <title>Tutor Registration | EduConnect</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4A7D99;
+            --primary-light: #6D9DB8;
+            --secondary: #FF7E5F;
+            --dark: #2D3748;
+            --light: #F7FAFC;
+            --gray: #E2E8F0;
+            --success: #48BB78;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .header {
+            grid-column: 1 / -1;
+            text-align: center;
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .header h1 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .header p {
+            color: #718096;
+            font-size: 1.1rem;
+        }
+
+        .form-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 0.95rem;
+        }
+
+        .input-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-container i {
+            position: absolute;
+            left: 12px;
+            color: var(--primary);
+        }
+
+        .input-container input,
+        .input-container textarea,
+        .input-container select {
+            width: 100%;
+            padding: 12px 16px 12px 40px;
+            border: 2px solid var(--gray);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .input-container input:focus,
+        .input-container textarea:focus,
+        .input-container select:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(74, 125, 153, 0.2);
+        }
+
+        .input-container textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .input-container input[type="file"] {
+            padding: 10px 16px 10px 40px;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .radio-option input {
+            width: auto;
+        }
+
+        .sign-in-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .sign-in-btn:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        .login-link {
+            text-align: center;
+            color: #718096;
+            margin-top: 1rem;
+        }
+
+        .login-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: var(--primary);
+            font-size: 1.2rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-btn:hover {
+            color: var(--primary-light);
+        }
+
+        .illustration {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .illustration img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 1.5rem;
+            }
+
+            .illustration {
+                display: none;
+            }
+        }
+
+        /* Custom file input */
+        .file-input-container {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-input-button {
+            border: 2px solid var(--gray);
+            border-radius: 8px;
+            padding: 10px 16px;
+            background-color: white;
+            color: var(--dark);
+            font-size: 1rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .file-input-button:hover {
+            border-color: var(--primary);
+        }
+
+        .file-input-container input[type="file"] {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        /* Time and day inputs */
+        .time-day-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        /* Success message */
+        .success-message {
+            background-color: rgba(72, 187, 120, 0.1);
+            color: var(--success);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 1rem;
+            display: none;
+        }
+    </style>
 </head>
 <body>
-    <a href="signup.html" class="home-icon">
-        <i class="fas fa-arrow-left"></i>
+    <a href="signup.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i> 
     </a>
+
     <div class="container">
         <div class="header">
-            <svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                <path fill="#4A7D99" fill-opacity="1" d="M0,128L120,138.7C240,149,480,171,720,160C960,149,1200,107,1320,85.3L1440,64V0H0Z"></path>
-            </svg>
-            <h2 class="title">Sign Up</h2>
+            <h1>Join as a Tutor</h1>
+            <p>Share your knowledge and connect with students worldwide</p>
         </div>
-        <h1><br></h1>
-        <h1><br></h1>
-        <h1><br></h1>
-            <label for="name">Username:</label>
-            <div class="input-container">
-                <i class="fas fa-user"></i>
-                <input type="text" id="tutor-name" name="username" required placeholder="Enter your username">
+
+        <div class="form-section">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <div class="input-container">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="tutor-name" name="username" required placeholder="John Doe">
+                </div>
             </div>
-        
-            <label for="email">Email:</label>
-            <div class="input-container">
-                <i class="fas fa-envelope"></i>
-                <input type="email" id="tutor-email" name="email" required placeholder="Enter your email">
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <div class="input-container">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="tutor-email" name="email" required placeholder="john@example.com">
+                </div>
             </div>
-        
-            <label for="password">Password:</label>
-            <div class="input-container">
-                <i class="fas fa-lock"></i>
-                <input type="password" id="tutor-password" name="password" required placeholder="Enter your password">
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="input-container">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="tutor-password" name="password" required placeholder="••••••••">
+                </div>
             </div>
-        
-            <label for="phone">Phone Number:</label>
-            <div class="input-container">
-                <i class="fas fa-phone"></i>
-                <input type="tel" id="tutor-phoneNumber" name="phone" required placeholder="Enter your phone number">
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <div class="input-container">
+                    <i class="fas fa-phone"></i>
+                    <input type="tel" id="tutor-phoneNumber" name="phone" required placeholder="+251 900 000 000">
+                </div>
             </div>
-        
-            <label for="specialization">Specialization:</label>
-            <div class="input-container">
-                <i class="fas fa-book"></i>
-                <input type="text" id="tutor-specialization" name="specialization" required placeholder="Enter your specialization">
+
+            <div class="form-group">
+                <label for="specialization">Specialization</label>
+                <div class="input-container">
+                    <i class="fas fa-book"></i>
+                    <input type="text" id="tutor-specialization" name="specialization" required placeholder="Mathematics, Physics, etc.">
+                </div>
             </div>
-        
-            <label for="experienceYear">Experience (Years):</label>
-            <div class="input-container">
-                <i class="fas fa-calendar"></i>
-                <input type="number" id="tutor-experienceYear" name="experienceYear" required placeholder="Enter years of experience">
+
+            <div class="form-group">
+                <label for="experienceYear">Years of Experience</label>
+                <div class="input-container">
+                    <i class="fas fa-calendar"></i>
+                    <input type="number" id="tutor-experienceYear" name="experienceYear" required placeholder="3">
+                </div>
             </div>
-        
-            <label for="bio">Bio:</label>
-            <div class="input-container">
-                <i class="fas fa-user-edit"></i>
-                <textarea id="tutor-bio" name="bio" required placeholder="Write a short bio"></textarea>
+
+            <div class="form-group">
+                <label for="bio">Professional Bio</label>
+                <div class="input-container">
+                    <i class="fas fa-user-edit"></i>
+                    <textarea id="tutor-bio" name="bio" required placeholder="Tell us about your teaching experience and approach..."></textarea>
+                </div>
             </div>
-        
-            <label for="gender">Sex:</label>
-            <input type="radio" name="gender" value="male" required>Male
-            <input type="radio" name="gender" value="female" required>Female<br>
-        
-            <label for="school">School Name:</label>
-            <div class="input-container">
-                <i class="fas fa-school"></i>
-                <input type="text" id="tutor-school" name="school" required placeholder="Enter your school name">
+        </div>
+
+        <div class="form-section">
+            <div class="form-group">
+                <label>Gender</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="male" name="gender" value="male" required>
+                        <label for="male">Male</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="female" name="gender" value="female" required>
+                        <label for="female">Female</label>
+                    </div>
+                </div>
             </div>
-        
-            <label for="address">Address:</label>
-            <div class="input-container">
-                <i class="fas fa-map-marker-alt"></i>
-                <input type="text" id="tutor-address" name="address" required placeholder="Enter your address">
+
+            <div class="form-group">
+                <label for="school">School/Institution</label>
+                <div class="input-container">
+                    <i class="fas fa-school"></i>
+                    <input type="text" id="tutor-school" name="school" required placeholder="Addis Ababa University">
+                </div>
             </div>
-            <!-- fee amount -->
-            <label for="address">Fee Amount:</label>
-            <div class="input-container">
-                <i class="fas fa-dollar"></i>
-                <input type="text" id="tutor-feeAmount" name="amount" required placeholder="Enter your address">
+
+            <div class="form-group">
+                <label for="address">Address</label>
+                <div class="input-container">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <input type="text" id="tutor-address" name="address" required placeholder="Bole, Addis Ababa">
+                </div>
             </div>
-            <!-- Tutor Time -->
-            <label for="address">Tutor Time:</label>
-            <div class="input-container">
-                <i class="fas fa-time"></i>
-                <input type="text" id="tutor-time" name="time" required placeholder="Enter your address">
+
+            <div class="form-group">
+                <label for="address">Hourly Rate (ETB)</label>
+                <div class="input-container">
+                    <i class="fas fa-dollar-sign"></i>
+                    <input type="number" id="tutor-feeAmount" name="amount" required placeholder="300">
+                </div>
             </div>
-           
-            <!-- tutor Day -->
-            <label for="address">Tutor Day:</label>
-            <div class="input-container">
-                <i class="fas fa-map-marker-alt"></i>
-                <input type="text" id="tutor-day" name="day" required placeholder="Enter your address">
+
+            <div class="time-day-container">
+                <div class="form-group">
+                    <label for="address">Available Time</label>
+                    <div class="input-container">
+                        <i class="fas fa-clock"></i>
+                        <input type="time" id="tutor-time" name="time" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Available Days</label>
+                    <div class="input-container">
+                        <i class="fas fa-calendar-day"></i>
+                        <select id="tutor-day" name="day" required>
+                            <option value="">Select day</option>
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday">Wednesday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
+                            <option value="Sunday">Sunday</option>
+                        </select>
+                    </div>
+                </div>
             </div>
-        
-            <label for="profile">Upload Profile Image:</label>
-            <div class="input-container">
-                <i class="fas fa-image"></i>
-                <input type="file" id="tutor-profile" name="profileImage">
+
+            <div class="form-group">
+                <label for="profile">Profile Photo</label>
+                <div class="file-input-container">
+                    <div class="file-input-button">
+                        <i class="fas fa-image"></i>
+                        <span>Choose file</span>
+                    </div>
+                    <input type="file" id="tutor-profile" name="profileImage" accept="image/*">
+                </div>
             </div>
-        
-            <button type="submit" class="sign-in-btn" onclick="tutorSubmit()">Sign Up</button>
-            <p class="login-link">Already have an account? <a href="#">Login</a></p>
-      
-         </div>
-    <script src="request.js"></script>
+
+            <button type="submit" class="sign-in-btn" onclick="tutorSubmit()">
+                <i class="fas fa-user-plus"></i> Complete Registration
+            </button>
+
+            <div class="success-message" id="successMessage">
+                <i class="fas fa-check-circle"></i> Registration successful! Redirecting...
+            </div>
+
+            <p class="login-link">Already have an account? <a href="login.html">Login here</a></p>
+        </div>
+    </div>
+
+    <script>
+        function tutorSubmit() {
+            // Form validation would go here
+            const successMessage = document.getElementById('successMessage');
+            successMessage.style.display = 'block';
+            
+            // Simulate form submission
+            setTimeout(() => {
+                window.location.href = "tutor-dashboard.html";
+            }, 2000);
+        }
+
+        // Update file input display
+        document.getElementById('tutor-profile').addEventListener('change', function(e) {
+            const fileName = e.target.files[0] ? e.target.files[0].name : 'No file chosen';
+            document.querySelector('.file-input-button span').textContent = fileName;
+        });
+    </script>
 </body>
 </html>
