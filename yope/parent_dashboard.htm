@@ -1,0 +1,146 @@
+<h1>Get Children</h1>
+<button onclick="get_children()">Get Children</button>
+
+<h1>Get Children Feedback</h1>
+<input type="number" id="studentID" placeholder="studentID"><br>
+<button onclick="get_children_feedback()">Children Feedback</button>
+
+<h1>Get Tutor</h1>
+<input type="number" id="tutorID" placeholder="tutorID"><br>
+<input type="number" id="limit" placeholder="limit"><br>
+<input type="number" id="offset" placeholder="offset"><br>
+
+<button onclick="get_tutor(1)">1. Get Tutor</button>
+<button onclick="get_tutor(2)">2. Get Tutor</button>
+<button onclick="get_tutor(3)">3. Get Tutor</button>
+<button onclick="get_tutor(4)">4. Get Tutor</button>
+<button onclick="get_tutor(5)">5. Get Tutor</button>
+
+<h1>Update Profile</h1>
+<input type="text" id="username" placeholder="Name"> <input type="button" value="Update" onclick="update_profile(1)"> <br>
+<input type="email" id="email" placeholder="Email"> <input type="button" value="Update" onclick="update_profile(2)"> <br>
+<input type="password" id="password" placeholder="Password"> <input type="button" value="Update" onclick="update_profile(3)"> <br>
+<input type="text" id="phoneNumber" placeholder="Phone"> <input type="button" value="Update" onclick="update_profile(4)"> <br>
+<input type="text" id="address" placeholder="Address"> <input type="button" value="Update" onclick="update_profile(5)"> <br>
+<input type="file" id="profileImage" name="profileImage" placeholder="Profile Image" accept="images/*"> <input type="button" value="Update" onclick="update_profile(6)"> <br>
+
+<h1><hr></h1>
+
+<script src="api.js"></script>
+<script type="text/javascript">
+    function update_profile(n) {
+        const username = document.getElementById('username').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const phoneNumber= document.getElementById('phoneNumber').value;
+        const address = document.getElementById('address').value;
+        const profileImage = document.getElementById('profileImage').files[0];
+
+        const formData = new FormData();
+        if(n==1) formData.append('username', username);
+        if(n==2) formData.append('email', email);
+        if(n==3) formData.append('password', password);
+        if(n==4) formData.append('phoneNumber', phoneNumber);
+        if(n==5) formData.append('address', address);
+        if(n==6) formData.append('profileImage', profileImage); 
+
+        formData.append('action', 'update-profile');
+        
+        const url = `${api_base_url}/parentdash.php`;
+        fetch(url, {
+                method: 'POST',
+                body: formData,
+            })
+        .then(response => response.json())
+        .then(data => {
+            const resultContainer = document.createElement('div');
+            resultContainer.textContent = JSON.stringify(data, null, 2);
+            document.body.appendChild(resultContainer);
+            // Process the data as needed
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
+    function get_children() {
+        const input = {
+            "action": "list-children"
+        };
+
+        const url = `${api_base_url}/parentdash.php?${new URLSearchParams(input)}`; 
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                const resultContainer = document.createElement('div');
+                resultContainer.textContent = JSON.stringify(data, null, 2);
+                document.body.appendChild(resultContainer);
+                // Process the data as needed
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
+    function get_tutor(n) {
+        const input = {
+            "action": "list-tutor"
+        };
+
+        const tutorID = document.getElementById('tutorID').value;
+        const limit = document.getElementById('limit').value;
+        const offset = document.getElementById('offset').value;
+
+        if(n==1) {
+            input['tutorID'] = tutorID;
+        }
+
+        if(n==2) {
+            input['limit'] = limit;
+            input['offset'] = offset;
+        }
+
+        if(n==3) {
+            input['limit'] = limit;
+        }
+
+        if(n==4) {
+            input['offset'] = offset;
+        }
+
+        const url = `${api_base_url}/parentdash.php?${new URLSearchParams(input)}`; 
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                const resultContainer = document.createElement('div');
+                resultContainer.textContent = JSON.stringify(data, null, 2);
+                document.body.appendChild(resultContainer);
+                // Process the data as needed
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
+    function get_children_feedback() {
+        const studentID = document.getElementById('studentID').value;
+
+        const input = {
+            "action": "get-student-feedback",
+            "studentID": studentID,
+        };
+
+        const url = `${api_base_url}/parentdash.php?${new URLSearchParams(input)}`; 
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                const resultContainer = document.createElement('div');
+                resultContainer.textContent = JSON.stringify(data, null, 2);
+                document.body.appendChild(resultContainer);
+                // Process the data as needed
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+</script>

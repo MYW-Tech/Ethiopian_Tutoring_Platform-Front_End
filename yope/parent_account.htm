@@ -1,0 +1,122 @@
+<h1>Register</h1>
+<input type="text" id="username" placeholder="Name"><br>
+<input type="email" id="email" placeholder="Email"><br>
+<input type="password" id="password" placeholder="Password"><br>
+<input type="text" id="phoneNumber" placeholder="Phone"><br>
+<input type="text" id="address" placeholder="Address"><br>
+<input type="file" id="profileImage" placeholder="Profile Image" accept="images/*"><br>
+<button onclick="signup()">Register</button>
+
+<h1>Login</h1>
+<input type="email" id="login-email" placeholder="Email"><br>
+<input type="password" id="login-password" placeholder="Password"><br>
+<button onclick="login()">Login</button>
+
+<h1>Logout</h1>
+<button onclick="logout()">Logout</button>
+
+<h1>Information</h1>
+<button onclick="info()">Information</button>
+
+<h1><hr></h1>
+
+<script src="api.js"></script>
+<script type="text/javascript">
+    function signup() {
+        const username = document.getElementById('username').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const phoneNumber= document.getElementById('phoneNumber').value;
+        const address = document.getElementById('address').value;
+        const profileImage = document.getElementById('profileImage').files[0];
+
+        const formData = new FormData();
+        formData.append('username', username);
+        formData.append('email', email);
+        formData.append('password', password);
+        formData.append('phoneNumber', phoneNumber);
+        formData.append('address', address);
+        formData.append('profileImage', profileImage);
+        formData.append('action', 'signup');
+        formData.append('role', 'parent');
+
+        const url = `${api_base_url}/user.php`;
+        fetch(url, {
+                method: 'POST',
+                body: formData,
+            })
+        .then(response => response.json())
+        .then(data => {
+            const resultContainer = document.createElement('div');
+            resultContainer.textContent = JSON.stringify(data, null, 2);
+            document.body.appendChild(resultContainer);
+            // Process the data as needed
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
+    function login() {
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
+
+        const formData = new FormData();
+        formData.append('email', email);
+        formData.append('password', password);
+        formData.append('action', 'login');
+        formData.append('role', 'parent');
+
+        const url = `${api_base_url}/user.php`;
+        fetch(url, {
+                method: 'POST',
+                body: formData,
+            })
+        .then(response => response.json())
+        .then(data => {
+            const resultContainer = document.createElement('div');
+            resultContainer.textContent = JSON.stringify(data, null, 2);
+            document.body.appendChild(resultContainer);
+            // Process the data as needed
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
+    function logout() {
+        const input = {
+            "action": "logout"
+        };
+
+        const url = `${api_base_url}/user.php?${new URLSearchParams(input)}`; 
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                const resultContainer = document.createElement('div');
+                resultContainer.textContent = JSON.stringify(data, null, 2);
+                document.body.appendChild(resultContainer);
+                // Process the data as needed
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
+    function info() {
+        const input = {};
+
+        const url = `${api_base_url}/user.php?${new URLSearchParams(input)}`; 
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                const resultContainer = document.createElement('div');
+                resultContainer.textContent = JSON.stringify(data, null, 2);
+                document.body.appendChild(resultContainer);
+                // Process the data as needed
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+</script>
