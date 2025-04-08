@@ -1,5 +1,5 @@
 
-const api_base_url = "http://localhost/Ethiopian_Tutoring_Platform/Ethiopian_Tutoring_Platform-Back_End";
+const api_base_url = "http://localhost:8080/yope_php/Ethiopian_Tutoring_Platform/Back_End/";
 function parentSubmit() {
     const username = document.getElementById('username').value;
     const email = document.getElementById('email').value;

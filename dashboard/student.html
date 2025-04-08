@@ -6,6 +6,7 @@
     <title>Student Dashboard - Success Tutor</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <style>
         :root {
             --primary: #4361ee;
@@ -653,28 +654,24 @@
             </div>
             
             <!-- Tutor Profile Section -->
-            <section class="tutor-profile">
+            <section class="tutor-profile" ng-app="tutorProfileApp" ng-controller="tutorProfileCtrl">
                 <h2 class="section-title"><i class="fas fa-user-graduate"></i> My Tutor Profile</h2>
                 
                 <div class="profile-container">
                     <div class="profile-img-container">
-                        <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Tutor" class="profile-img">
+                        <img ng-src="{{tutor.filePath}}" alt="Tutor" class="profile-img">
                     </div>
                     
                     <div class="profile-info">
-                        <h3 class="profile-name">Dr. Sarah Johnson</h3>
-                        <span class="profile-subject">Mathematics Expert</span>
+                        <h3 class="profile-name">{{ tutor.username }}</h3>
+                        <span class="profile-subject">{{ tutor.specialization }}</span>
                         
-                        <p class="profile-bio">
-                            PhD in Mathematics with 10+ years of teaching experience. Specializes in Algebra, 
-                            Calculus, and Geometry. Passionate about making complex concepts easy to understand 
-                            through real-world applications and interactive learning.
-                        </p>
+                        <p class="profile-bio">{{ tutor.bio }}</p>
                         
                         <div class="profile-details">
                             <div class="detail-item">
                                 <div class="detail-label">Experience</div>
-                                <div class="detail-value">12 years</div>
+                                <div class="detail-value">{{ tutor.exprienceYear }} years</div>
                             </div>
                             
                             <div class="detail-item">
@@ -684,12 +681,12 @@
                             
                             <div class="detail-item">
                                 <div class="detail-label">Rating</div>
-                                <div class="detail-value">4.9/5.0</div>
+                                <div class="detail-value">{{ tutor.rating }}/5.0</div>
                             </div>
                             
                             <div class="detail-item">
                                 <div class="detail-label">Response Time</div>
-                                <div class="detail-value">&lt; 2 hours</div>
+                                <div class="detail-value">&lt; {{ tutor.tutorTime }} hours</div>
                             </div>
                         </div>
                         
@@ -903,3 +900,17 @@ function fetchTutors() {
     </script>
 </body>
 </html>
+
+<script>
+    var api_base_url = "http://localhost:8080/yope_php/Ethiopian_Tutoring_Platform/Back_End/myw.tutor.api.php?action=list_student_tutor"
+    var tutor_profile_app = angular.module('tutorProfileApp', []);
+    tutor_profile_app.controller('tutorProfileCtrl',
+        function($scope, $http) {
+            $http.get(api_base_url)
+            .then(function(response){
+                $scope.tutor = response.data[0];
+                console.log($scope.tutor);
+            });
+        }
+    );
+</script>
