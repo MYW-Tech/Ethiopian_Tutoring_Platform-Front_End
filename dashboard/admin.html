@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduConnect Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="images/logo.png" alt="EduConnect Logo" class="logo">
+                <h2>EduConnect</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active">
+                        <a href="#">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-users"></i>
+                            <span>Users</span>
+                            <i class="fas fa-chevron-down dropdown-icon"></i>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="#"><i class="fas fa-user-graduate"></i> Students</a></li>
+                            <li><a href="#"><i class="fas fa-chalkboard-teacher"></i> Tutors</a></li>
+                            <li><a href="#"><i class="fas fa-user-friends"></i> Parents</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-comments"></i>
+                            <span>Communications</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Schedules</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                            <span>Payments</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="images/admin-avatar.jpg" alt="Admin Avatar">
+                    <div class="user-info">
+                        <h4>Admin Name</h4>
+                        <p>Super Admin</p>
+                    </div>
+                    <a href="#" class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="main-header">
+                <div class="header-left">
+                    <button class="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>Dashboard Overview</h1>
+                </div>
+                <div class="header-right">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Widgets -->
+            <div class="dashboard-widgets">
+                <div class="widget">
+                    <div class="widget-icon bg-primary">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <div class="widget-info">
+                        <h3>1,245</h3>
+                        <p>Students</p>
+                    </div>
+                    <div class="widget-action">
+                        <a href="#">View All <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="widget">
+                    <div class="widget-icon bg-success">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <div class="widget-info">
+                        <h3>86</h3>
+                        <p>Tutors</p>
+                    </div>
+                    <div class="widget-action">
+                        <a href="#">View All <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="widget">
+                    <div class="widget-icon bg-warning">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <div class="widget-info">
+                        <h3>950</h3>
+                        <p>Parents</p>
+                    </div>
+                    <div class="widget-action">
+                        <a href="#">View All <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="widget">
+                    <div class="widget-icon bg-danger">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="widget-info">
+                        <h3>24</h3>
+                        <p>New Messages</p>
+                    </div>
+                    <div class="widget-action">
+                        <a href="#">View All <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activities and User Management -->
+            <div class="dashboard-content">
+                <div class="content-row">
+                    <div class="card recent-activities">
+                        <div class="card-header">
+                            <h3>Recent Activities</h3>
+                            <div class="card-actions">
+                                <button class="btn btn-sm">View All</button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <ul class="activity-list">
+                                <li>
+                                    <div class="activity-icon bg-info">
+                                        <i class="fas fa-user-plus"></i>
+                                    </div>
+                                    <div class="activity-details">
+                                        <p>New tutor registered - Sarah Johnson</p>
+                                        <span class="activity-time">10 mins ago</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="activity-icon bg-success">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <div class="activity-details">
+                                        <p>Payment received from Robert Smith</p>
+                                        <span class="activity-time">45 mins ago</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="activity-icon bg-warning">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                    </div>
+                                    <div class="activity-details">
+                                        <p>Parent complaint received</p>
+                                        <span class="activity-time">2 hours ago</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="activity-icon bg-primary">
+                                        <i class="fas fa-calendar-check"></i>
+                                    </div>
+                                    <div class="activity-details">
+                                        <p>New session scheduled</p>
+                                        <span class="activity-time">5 hours ago</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="activity-icon bg-danger">
+                                        <i class="fas fa-user-times"></i>
+                                    </div>
+                                    <div class="activity-details">
+                                        <p>Tutor account deactivated</p>
+                                        <span class="activity-time">1 day ago</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card quick-actions">
+                        <div class="card-header">
+                            <h3>Quick Actions</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="action-grid">
+                                <a href="#" class="action-item">
+                                    <div class="action-icon bg-primary">
+                                        <i class="fas fa-user-plus"></i>
+                                    </div>
+                                    <p>Add New User</p>
+                                </a>
+                                <a href="#" class="action-item">
+                                    <div class="action-icon bg-success">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <p>Send Message</p>
+                                </a>
+                                <a href="#" class="action-item">
+                                    <div class="action-icon bg-info">
+                                        <i class="fas fa-calendar-plus"></i>
+                                    </div>
+                                    <p>Create Schedule</p>
+                                </a>
+                                <a href="#" class="action-item">
+                                    <div class="action-icon bg-warning">
+                                        <i class="fas fa-file-invoice"></i>
+                                    </div>
+                                    <p>Generate Report</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-row">
+                    <div class="card user-management">
+                        <div class="card-header">
+                            <h3>User Management</h3>
+                            <div class="card-actions">
+                                <div class="dropdown">
+                                    <button class="btn btn-sm dropdown-toggle" type="button" id="userFilterDropdown" data-toggle="dropdown">
+                                        All Users
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">All Users</a>
+                                        <a class="dropdown-item" href="#">Students</a>
+                                        <a class="dropdown-item" href="#">Tutors</a>
+                                        <a class="dropdown-item" href="#">Parents</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="user-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Role</th>
+                                            <th>Email</th>
+                                            <th>Status</th>
+                                            <th>Last Active</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="user-avatar">
+                                                    <img src="images/user1.jpg" alt="User Avatar">
+                                                    <span>Michael Brown</span>
+                                                </div>
+                                            </td>
+                                            <td>Student</td>
+                                            <td>michael@example.com</td>
+                                            <td><span class="status-badge active">Active</span></td>
+                                            <td>2 hours ago</td>
+                                            <td>
+                                                <div class="action-buttons">
+                                                    <button class="btn-icon edit" title="Edit"><i class="fas fa-edit"></i></button>
+                                                    <button class="btn-icon message" title="Message"><i class="fas fa-comment"></i></button>
+                                                    <button class="btn-icon view" title="View"><i class="fas fa-eye"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="user-avatar">
+                                                    <img src="images/user2.jpg" alt="User Avatar">
+                                                    <span>Sarah Johnson</span>
+                                                </div>
+                                            </td>
+                                            <td>Tutor</td>
+                                            <td>sarah@example.com</td>
+                                            <td><span class="status-badge pending">Pending</span></td>
+                                            <td>1 day ago</td>
+                                            <td>
+                                                <div class="action-buttons">
+                                                    <button class="btn-icon edit" title="Edit"><i class="fas fa-edit"></i></button>
+                                                    <button class="btn-icon message" title="Message"><i class="fas fa-comment"></i></button>
+                                                    <button class="btn-icon view" title="View"><i class="fas fa-eye"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="user-avatar">
+                                                    <img src="images/user3.jpg" alt="User Avatar">
+                                                    <span>Robert Smith</span>
+                                                </div>
+                                            </td>
+                                            <td>Parent</td>
+                                            <td>robert@example.com</td>
+                                            <td><span class="status-badge active">Active</span></td>
+                                            <td>30 mins ago</td>
+                                            <td>
+                                                <div class="action-buttons">
+                                                    <button class="btn-icon edit" title="Edit"><i class="fas fa-edit"></i></button>
+                                                    <button class="btn-icon message" title="Message"><i class="fas fa-comment"></i></button>
+                                                    <button class="btn-icon view" title="View"><i class="fas fa-eye"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="user-avatar">
+                                                    <img src="images/user4.jpg" alt="User Avatar">
+                                                    <span>Emily Davis</span>
+                                                </div>
+                                            </td>
+                                            <td>Student</td>
+                                            <td>emily@example.com</td>
+                                            <td><span class="status-badge inactive">Inactive</span></td>
+                                            <td>1 week ago</td>
+                                            <td>
+                                                <div class="action-buttons">
+                                                    <button class="btn-icon edit" title="Edit"><i class="fas fa-edit"></i></button>
+                                                    <button class="btn-icon message" title="Message"><i class="fas fa-comment"></i></button>
+                                                    <button class="btn-icon view" title="View"><i class="fas fa-eye"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="table-footer">
+                                <div class="table-pagination">
+                                    <button class="btn-pagination prev" disabled><i class="fas fa-chevron-left"></i></button>
+                                    <span class="page-number">1</span>
+                                    <button class="btn-pagination next"><i class="fas fa-chevron-right"></i></button>
+                                </div>
+                                <div class="table-summary">
+                                    Showing 1 to 4 of 24 entries
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- User Profile Modal -->
+    <div class="modal" id="userProfileModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">User Profile</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- User profile content will be loaded here via AJAX -->
+                    <div class="text-center py-4">
+                        <i class="fas fa-spinner fa-spin fa-2x"></i>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script >
+        document.addEventListener('DOMContentLoaded', function() {
+    // Toggle sidebar
+    const menuToggle = document.querySelector('.menu-toggle');
+    const sidebar = document.querySelector('.sidebar');
+    
+    menuToggle.addEventListener('click', function() {
+        sidebar.classList.toggle('show');
+    });
+    
+    // Toggle submenu
+    const navItems = document.querySelectorAll('.sidebar-nav > ul > li');
+    
+    navItems.forEach(item => {
+        const link = item.querySelector('a');
+        if (link && item.querySelector('.submenu')) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                item.classList.toggle('active');
+            });
+        }
+    });
+    
+    // Modal functionality
+    const viewButtons = document.querySelectorAll('.btn-icon.view');
+    const modal = document.getElementById('userProfileModal');
+    const closeModal = modal.querySelector('.close');
+    
+    viewButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            modal.classList.add('show');
+            // Here you would typically load user data via AJAX
+            // For demo, we'll just show the spinner
+            const modalBody = modal.querySelector('.modal-body');
+            modalBody.innerHTML = `
+                <div class="user-profile-modal">
+                    <div class="profile-header text-center">
+                        <img src="images/user-demo.jpg" alt="User" class="profile-avatar">
+                        <h4 class="profile-name">User Name</h4>
+                        <p class="profile-role">Role</p>
+                        <div class="profile-status">
+                            <span class="status-badge active">Active</span>
+                        </div>
+                    </div>
+                    <div class="profile-details">
+                        <div class="detail-item">
+                            <label>Email:</label>
+                            <span>user@example.com</span>
+                        </div>
+                        <div class="detail-item">
+                            <label>Phone:</label>
+                            <span>+1 234 567 890</span>
+                        </div>
+                        <div class="detail-item">
+                            <label>Joined:</label>
+                            <span>January 15, 2023</span>
+                        </div>
+                        <div class="detail-item">
+                            <label>Last Active:</label>
+                            <span>2 hours ago</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+    });
+    
+    closeModal.addEventListener('click', function() {
+        modal.classList.remove('show');
+    });
+    
+    // Close modal when clicking outside
+    window.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.classList.remove('show');
+        }
+    });
+    
+    // Search functionality
+    const searchBox = document.querySelector('.search-box input');
+    searchBox.addEventListener('focus', function() {
+        this.parentElement.classList.add('focused');
+    });
+    
+    searchBox.addEventListener('blur', function() {
+        this.parentElement.classList.remove('focused');
+    });
+    
+    // Table row click (for demo purposes)
+    const tableRows = document.querySelectorAll('.user-table tbody tr');
+    tableRows.forEach(row => {
+        row.addEventListener('click', function(e) {
+            if (!e.target.closest('.action-buttons')) {
+                // Here you would typically navigate to user details or open modal
+                console.log('View user:', this.querySelector('.user-avatar span').textContent);
+            }
+        });
+    });
+    
+    // Pagination buttons
+    const prevBtn = document.querySelector('.btn-pagination.prev');
+    const nextBtn = document.querySelector('.btn-pagination.next');
+    const pageNumber = document.querySelector('.page-number');
+    
+    let currentPage = 1;
+    
+    nextBtn.addEventListener('click', function() {
+        if (currentPage < 5) { // Assuming 5 pages for demo
+            currentPage++;
+            pageNumber.textContent = currentPage;
+        }
+    });
+});
+    </script>
+</body>
+</html>

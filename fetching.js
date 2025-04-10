@@ -1,245 +1,235 @@
-const api_url = "http://localhost/Ethiopian_Tutoring_Platform/Ethiopian_Tutoring_Platform-Back_End/user.php";
 
-let tutorsData = [];
-let currentPage = 1;
-const tutorsPerPage = 10; // Show 10 tutors per page
+const api_base_url = "http://localhost/Ethiopian_Tutoring_Platform/Ethiopian_Tutoring_Platform-Back_End";
+function parentSubmit() {
+    const username = document.getElementById('username').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const phoneNumber= document.getElementById('phoneNumber').value;
+    const address = document.getElementById('address').value;
+    const profileImage = document.getElementById('profileImage').files[0];
 
-function fetchTutors() {
-    fetch(api_url, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
+    const formData = new FormData();
+    formData.append('username', username);
+    formData.append('email', email);
+    formData.append('password', password);
+    formData.append('phoneNumber', phoneNumber);
+    formData.append('address', address);
+    formData.append('profileImage', profileImage);
+    formData.append('action', 'signup_for_parent');
+
+    const url = `${api_base_url}/myw.tutor.api.php`;
+    fetch(url, {
+            method: 'POST',
+            body: formData,
+        })
     .then(response => response.json())
     .then(data => {
-        const tutors = Array.isArray(data) ? data : [data];
-        tutorsData = tutors.filter(tutor => tutor.role === 'tutor');
-        currentPage = 1; // reset page on fetch
-        displayTutors();
+        const resultContainer = document.createElement('div');
+        resultContainer.textContent = JSON.stringify(data, null, 2);
+        // document.body.appendChild(resultContainer);
+        // Process the data as needed
     })
     .catch(error => {
         console.error('Error:', error);
-        document.getElementById('tutors-container').innerHTML = `
-            <div class="error-message">
-                <p>Failed to load tutors. Please try again later.</p>
-                <button onclick="fetchTutors()">Retry</button>
-            </div>
-        `;
     });
 }
 
-function displayTutors() {
-    const tutorsContainer = document.getElementById('tutors-container');
-    tutorsContainer.innerHTML = '';
+function tutorSubmit() {
+    // event.preventDefault(); // Prevent page refresh
 
-    const start = (currentPage - 1) * tutorsPerPage;
-    const end = start + tutorsPerPage;
-    const paginatedTutors = tutorsData.slice(start, end);
-
-    if (paginatedTutors.length === 0) {
-        tutorsContainer.innerHTML = "<p>No tutors available.</p>";
-        return;
+    const username = document.getElementById('tutor-name').value.trim();
+    const email = document.getElementById('tutor-email').value.trim();
+    const password = document.getElementById('tutor-password').value.trim();
+    const phoneNumber = document.getElementById('tutor-phoneNumber').value.trim();
+    const specialization = document.getElementById('tutor-specialization').value.trim();
+    const experienceYear = document.getElementById('tutor-experienceYear').value.trim();
+    const bio = document.getElementById('tutor-bio').value.trim();
+    const genderInput = document.querySelector('input[name="gender"]:checked');
+    
+    if (!genderInput) {
+        alert("Please select a gender.");
+        return false;
     }
+    
+    const gender = genderInput.value;
+    const school = document.getElementById('tutor-school').value.trim();
+    const address = document.getElementById('tutor-address').value.trim();
+    const amount = document.getElementById('tutor-feeAmount').value.trim();
+    const _time = document.getElementById('tutor-time').value.trim();
+    const _day = document.getElementById('tutor-day').value.trim();
+    const profileImage = document.getElementById('tutor-profile').files[0];
 
-    // Create grid container
-    const gridContainer = document.createElement('div');
-    gridContainer.style.display = 'grid';
-    gridContainer.style.gridTemplateColumns = 'repeat(auto-fill, minmax(280px, 1fr))';
-    gridContainer.style.gap = '20px';
-    gridContainer.style.padding = '20px';
+    const formData = new FormData();
+    formData.append('profileImage', profileImage);
+    formData.append('username', username);
+    formData.append('email', email);
+    formData.append('password', password);
+    formData.append('phoneNumber', phoneNumber);
+    formData.append('specialization', specialization);
+    formData.append('experienceYear', experienceYear);
+    formData.append('bio', bio);
+    formData.append('gender', gender);
+    formData.append('school', school);
+    formData.append('address', address);
+    formData.append('amount', amount);
+    formData.append('time', _time);
+    formData.append('day', _day);
+    formData.append('action', 'signup_for_tutor');
 
-    paginatedTutors.forEach(tutor => {
-        const tutorCard = document.createElement('div');
-        tutorCard.classList.add('tutor-card');
-        tutorCard.style.border = '1px solid #e0e0e0';
-        tutorCard.style.borderRadius = '8px';
-        tutorCard.style.padding = '15px';
-        tutorCard.style.backgroundColor = '#fff';
-        tutorCard.style.boxShadow = '0 2px 8px rgba(0,0,0,0.1)';
-        tutorCard.style.transition = 'transform 0.3s ease';
-
-        // Hover effect
-        tutorCard.onmouseenter = () => tutorCard.style.transform = 'translateY(-5px)';
-        tutorCard.onmouseleave = () => tutorCard.style.transform = 'none';
-
-        // Hourly rate at top
-        const hourlyRate = document.createElement('div');
-        hourlyRate.style.fontSize = '1.3rem';
-        hourlyRate.style.fontWeight = 'bold';
-        hourlyRate.style.color = '#27ae60';
-        hourlyRate.style.marginBottom = '10px';
-        hourlyRate.textContent = `${tutor.feeAmount} ETB/hr`;
-        
-        // Tutor name (first name + last initial)
-        const nameParts = tutor.username.split(' ');
-        const displayName = nameParts.length > 1 
-            ? `${nameParts[0]} ${nameParts[1].charAt(0)}.`
-            : tutor.username;
-        
-        const name = document.createElement('h3');
-        name.textContent = displayName;
-        name.style.margin = '5px 0';
-        name.style.fontSize = '1.2rem';
-        name.style.color = '#2c3e50';
-
-        // Rating and jobs
-        const rating = document.createElement('div');
-        rating.style.margin = '5px 0 10px 0';
-        rating.style.color = '#f39c12';
-        rating.style.fontWeight = '500';
-        rating.innerHTML = `
-            <span style="font-weight: bold;">${tutor.rating || '5.0'}/5</span>
-            <span style="color: #7f8c8d; font-size: 0.9rem;"> (${tutor.exprienceYear || '0'} ${tutor.exprienceYear === '1' ? 'year' : 'years'} experience)</span>
-        `;
-
-        // Specializations (split into two lines like in the image)
-        const specializations = tutor.specialization ? 
-            tutor.specialization.split(',').map(s => s.trim()) : 
-            ['General Tutor'];
-        
-        const specialization1 = document.createElement('div');
-        specialization1.textContent = specializations[0] || '';
-        specialization1.style.margin = '5px 0';
-        specialization1.style.color = '#34495e';
-        
-        const specialization2 = document.createElement('div');
-        specialization2.textContent = specializations[1] || '';
-        specialization2.style.margin = '5px 0 15px 0';
-        specialization2.style.color = '#34495e';
-
-        // See More button
-        const seeMoreButton = document.createElement('button');
-        seeMoreButton.textContent = 'See More';
-        seeMoreButton.style.width = '100%';
-        seeMoreButton.style.padding = '8px';
-        seeMoreButton.style.backgroundColor = '#3498db';
-        seeMoreButton.style.color = 'white';
-        seeMoreButton.style.border = 'none';
-        seeMoreButton.style.borderRadius = '4px';
-        seeMoreButton.style.cursor = 'pointer';
-        seeMoreButton.style.fontWeight = 'bold';
-        seeMoreButton.style.transition = 'background-color 0.3s';
-        
-        seeMoreButton.onmouseenter = () => seeMoreButton.style.backgroundColor = '#2980b9';
-        seeMoreButton.onmouseleave = () => seeMoreButton.style.backgroundColor = '#3498db';
-        
-        seeMoreButton.onclick = function() {
-            localStorage.setItem('selectedTutor', JSON.stringify(tutor));
-            window.location.href = 'tutor-details.html';
-        };
-
-        // Assemble the card
-        tutorCard.appendChild(hourlyRate);
-        tutorCard.appendChild(name);
-        tutorCard.appendChild(rating);
-        tutorCard.appendChild(specialization1);
-        tutorCard.appendChild(specialization2);
-        tutorCard.appendChild(seeMoreButton);
-
-        gridContainer.appendChild(tutorCard);
+    const url = `${api_base_url}/myw.tutor.api.php`;
+    fetch(url, {
+            method: 'POST',
+            body: formData,
+        })
+    .then(response => response.json())
+    .then(data => {
+        const resultContainer = document.createElement('div');
+        resultContainer.textContent = JSON.stringify(data, null, 2);
+        // document.body.appendChild(resultContainer);
+        // Process the data as needed
+    })
+    .catch(error => {
+        console.error('Error:', error);
     });
-
-    tutorsContainer.appendChild(gridContainer);
-    renderPagination();
 }
 
-function renderPagination() {
-    const paginationContainer = document.getElementById('pagination');
-    paginationContainer.innerHTML = '';
+// function for Student 
+function studentSubmit() {
+    const username = document.getElementById('username').value;  // Fixed username
+    const email = document.getElementById('student-email').value;
+    const password = document.getElementById('student-password').value;
+    const phoneNumber = document.getElementById('student-phoneNumber').value;
+    const age = document.getElementById('student-age').value;
+    const gradeLevel = document.getElementById('student-gradeLevel').value;   
+    const preferredSubject = document.getElementById('student-preferredSubject').value;   
+    const school = document.getElementById('student-school').value;   
+    const studentParentEmail = document.getElementById('family_email').value;  // Fixed parent email
+    const profileImage = document.getElementById('profileImage').files[0];  // Fixed image input ID
 
-    const totalPages = Math.ceil(tutorsData.length / tutorsPerPage);
+    const formData = new FormData();
+    formData.append('profileImage', profileImage);
+    formData.append('student-username', username);
+    formData.append('email', email);
+    formData.append('password', password);
+    formData.append('phone', phoneNumber);
+    formData.append('age', age);
+    formData.append('grade', gradeLevel);
+    formData.append('subject', preferredSubject);
+    formData.append('school', school);
+    formData.append('studentParentEmail', studentParentEmail);
+    formData.append('action', 'signup_for_student');
 
-    if (totalPages <= 1) return; // No pagination needed if only one page
-
-    // Create "See More" button (loads next page)
-    const seeMoreBtn = document.createElement('button');
-    seeMoreBtn.textContent = 'See More Tutors';
-    seeMoreBtn.style.margin = '20px auto';
-    seeMoreBtn.style.padding = '10px 20px';
-    seeMoreBtn.style.backgroundColor = '#3498db';
-    seeMoreBtn.style.color = 'white';
-    seeMoreBtn.style.border = 'none';
-    seeMoreBtn.style.borderRadius = '4px';
-    seeMoreBtn.style.cursor = 'pointer';
-    seeMoreBtn.style.fontWeight = 'bold';
-    seeMoreBtn.style.display = 'block';
-    seeMoreBtn.style.transition = 'background-color 0.3s';
-    
-    seeMoreBtn.onmouseenter = () => seeMoreBtn.style.backgroundColor = '#2980b9';
-    seeMoreBtn.onmouseleave = () => seeMoreBtn.style.backgroundColor = '#3498db';
-    
-    seeMoreBtn.onclick = () => {
-        if (currentPage < totalPages) {
-            currentPage++;
-            displayTutors();
-            // Scroll to bottom to see new tutors
-            window.scrollTo({
-                top: document.body.scrollHeight,
-                behavior: 'smooth'
-            });
-        }
-    };
-    
-    paginationContainer.appendChild(seeMoreBtn);
+    const url = `${api_base_url}/myw.tutor.api.php`;
+    fetch(url, {
+            method: 'POST',
+            body: formData,
+        })
+    .then(response => response.json())
+    .then(data => {
+        const resultContainer = document.createElement('div');
+        resultContainer.textContent = JSON.stringify(data, null, 2);
+        
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 }
+
+function adminSubmit() {
+    const username = document.getElementById('username').value;  // Fixed username
+    const email = document.getElementById('admin-email').value;
+    const password = document.getElementById('admin-password').value;
+    const phoneNumber = document.getElementById('admin-phoneNumber').value;
+    const profileImage = document.getElementById('profileImage').files[0];  // Fixed image input ID
+
+    const formData = new FormData();
+    formData.append('profileImage', profileImage);
+    formData.append('username', username);
+    formData.append('email', email);
+    formData.append('password', password);
+    formData.append('phone', phoneNumber);
+    formData.append('action', 'signup_for_admin');
+
+    const url = `${api_base_url}/myw.tutor.api.php`;
+    fetch(url, {
+            method: 'POST',
+            body: formData,
+        })
+    .then(response => response.json())
+    .then(data => {
+        const resultContainer = document.createElement('div');
+        resultContainer.textContent = JSON.stringify(data, null, 2);
+        
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function login() {
     const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const role = document.getElementById('role').value;
-    
+    const password = document.getElementById('login-password').value;
+
     const formData = new FormData();
     formData.append('email', email);
     formData.append('password', password);
-    formData.append('role', role);
-    formData.append('action', 'login');
-    fetch(`${api_url}/user.php`, {
-    method: 'POST',
-    body: formData,
-    })
+    formData.append('action', 'login_for_parent');
+
+    const url = `${api_base_url}/myw.tutor.api.php`;
+    fetch(url, {
+            method: 'POST',
+            body: formData,
+        })
     .then(response => response.json())
     .then(data => {
-    if (data.status === 'success') {
-    alert('Login successful!');
-    window.location = 'user.htm';
-    } else {
-    alert('Login failed: ' + data.data);
-    }
+        const resultContainer = document.createElement('div');
+        resultContainer.textContent = JSON.stringify(data, null, 2);
+        document.body.appendChild(resultContainer);
+        // Process the data as needed
     })
-    .catch((error) => {
-    console.error('Error:', error);
-    alert('Error: ' + error);
+    .catch(error => {
+        console.error('Error:', error);
     });
-    
-    return false;
-    }
-    
-    function logout() {
-    const data = {
-    action: 'logout',
-    email: document.getElementById('email').value,
+}
+
+function logout() {
+    const input = {
+        "action": "logout"
     };
-    
-    fetch(`${api_url}/user.php?${new URLSearchParams(data).toString()}`, {
-    method: 'GET',
-    headers: {
-    'Content-Type': 'application/json'
-    }
-    })
-    .then(response => response.json())
-    .then(data => {
-    if (data.status === 'success') {
-    alert('Logout successful!');
-    } else {
-    alert('Logout failed: ' + data.data);
-    }
-    })
-    .catch((error) => {
-    console.error('Error:', error);
-    alert('Error: ' + error);
-    }); 
-    }
-    
-// Initialize when page loads
-document.addEventListener('DOMContentLoaded', fetchTutors);
+
+    const url = `${api_base_url}/myw.tutor.api.php?${new URLSearchParams(input)}`; 
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            const resultContainer = document.createElement('div');
+            resultContainer.textContent = JSON.stringify(data, null, 2);
+            document.body.appendChild(resultContainer);
+            // Process the data as needed
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+
+

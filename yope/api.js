@@ -1,1 +1,1 @@
-const api_base_url = "http://localhost:8080/yope_php/Ethiopian_Tutoring_Platform/Back_End";
+const api_base_url = "http://127.0.0.1:5500/Ethiopian_Tutoring_Platform-Back_End/";

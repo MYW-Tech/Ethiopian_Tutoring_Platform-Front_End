@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutor Dashboard | ConnectEd</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="tutor.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2 class="logo">Connect<span>Ed</span></h2>
+                <p class="role">Tutor Dashboard</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active">
+                        <a href="#dashboard">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#students">
+                            <i class="fas fa-user-graduate"></i>
+                            <span>Students</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#parents">
+                            <i class="fas fa-users"></i>
+                            <span>Parents</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#messages">
+                            <i class="fas fa-comments"></i>
+                            <span>Messages</span>
+                            <span class="badge">3</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#schedule">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Schedule</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#reports">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#resources">
+                            <i class="fas fa-book"></i>
+                            <span>Resources</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="avatar">
+                        <img src="https://via.placeholder.com/150" alt="Tutor Avatar">
+                    </div>
+                    <div class="user-info">
+                        <h4>John Tutor</h4>
+                        <p>Math & Science</p>
+                    </div>
+                </div>
+                <a href="#settings" class="settings-btn">
+                    <i class="fas fa-cog"></i>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Top Navigation Bar -->
+            <header class="top-nav">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search students, parents, or messages...">
+                </div>
+                
+                <div class="nav-right">
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">5</span>
+                    </div>
+                    <div class="user-menu">
+                        <div class="avatar">
+                            <img src="https://via.placeholder.com/150" alt="User Avatar">
+                        </div>
+                        <span>John T.</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="content-wrapper">
+                <h1 class="page-title">Dashboard Overview</h1>
+                <p class="page-subtitle">Welcome back, John! Here's what's happening today.</p>
+                
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background-color: #4e73df;">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>24</h3>
+                            <p>Active Students</p>
+                        </div>
+                        <div class="stat-trend up">
+                            <i class="fas fa-arrow-up"></i> 12%
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background-color: #1cc88a;">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>18</h3>
+                            <p>Connected Parents</p>
+                        </div>
+                        <div class="stat-trend up">
+                            <i class="fas fa-arrow-up"></i> 5%
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background-color: #36b9cc;">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>4</h3>
+                            <p>Sessions Today</p>
+                        </div>
+                        <div class="stat-trend down">
+                            <i class="fas fa-arrow-down"></i> 2%
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background-color: #f6c23e;">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>3</h3>
+                            <p>New Messages</p>
+                        </div>
+                        <div class="stat-trend up">
+                            <i class="fas fa-arrow-up"></i> 20%
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Upcoming Sessions -->
+                <div class="content-section">
+                    <div class="section-header">
+                        <h2>Upcoming Sessions</h2>
+                        <a href="#schedule" class="view-all">View All</a>
+                    </div>
+                    <div class="sessions-list">
+                        <div class="session-card">
+                            <div class="session-time">
+                                <span class="time">09:00 AM</span>
+                                <span class="duration">60 min</span>
+                            </div>
+                            <div class="session-details">
+                                <h3>Mathematics - Algebra Basics</h3>
+                                <p class="student-info">
+                                    <span>Emily Johnson</span>
+                                    <span class="parent">Parent: Sarah Johnson</span>
+                                </p>
+                                <div class="session-actions">
+                                    <button class="btn btn-outline"><i class="fas fa-video"></i> Start Zoom</button>
+                                    <button class="btn btn-primary"><i class="fas fa-comment"></i> Message Parent</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="session-card">
+                            <div class="session-time">
+                                <span class="time">11:30 AM</span>
+                                <span class="duration">45 min</span>
+                            </div>
+                            <div class="session-details">
+                                <h3>Science - Chemistry Review</h3>
+                                <p class="student-info">
+                                    <span>Michael Chen</span>
+                                    <span class="parent">Parent: David Chen</span>
+                                </p>
+                                <div class="session-actions">
+                                    <button class="btn btn-outline"><i class="fas fa-video"></i> Start Zoom</button>
+                                    <button class="btn btn-primary"><i class="fas fa-comment"></i> Message Parent</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recent Messages -->
+                <div class="content-section">
+                    <div class="section-header">
+                        <h2>Recent Messages</h2>
+                        <a href="#messages" class="view-all">View All</a>
+                    </div>
+                    <div class="messages-list">
+                        <div class="message-card unread">
+                            <div class="message-avatar">
+                                <img src="https://via.placeholder.com/150" alt="Parent Avatar">
+                            </div>
+                            <div class="message-content">
+                                <div class="message-header">
+                                    <h3>Sarah Johnson</h3>
+                                    <span class="time">2 hours ago</span>
+                                </div>
+                                <p class="message-preview">Hi John, I wanted to check if we could reschedule Emily's session on Friday...</p>
+                            </div>
+                        </div>
+                        
+                        <div class="message-card">
+                            <div class="message-avatar">
+                                <img src="https://via.placeholder.com/150" alt="Parent Avatar">
+                            </div>
+                            <div class="message-content">
+                                <div class="message-header">
+                                    <h3>David Chen</h3>
+                                    <span class="time">Yesterday</span>
+                                </div>
+                                <p class="message-preview">Thanks for the progress report on Michael. We're seeing great improvement...</p>
+                            </div>
+                        </div>
+                        
+                        <div class="message-card">
+                            <div class="message-avatar">
+                                <img src="https://via.placeholder.com/150" alt="Parent Avatar">
+                            </div>
+                            <div class="message-content">
+                                <div class="message-header">
+                                    <h3>Lisa Williams</h3>
+                                    <span class="time">2 days ago</span>
+                                </div>
+                                <p class="message-preview">Could you recommend some additional resources for geometry?</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Student Progress -->
+                <div class="content-section">
+                    <div class="section-header">
+                        <h2>Student Progress Overview</h2>
+                        <div class="time-filter">
+                            <select>
+                                <option>Last 7 Days</option>
+                                <option>Last 30 Days</option>
+                                <option selected>Last 90 Days</option>
+                                <option>This Year</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="progress-chart">
+                        <canvas id="progressChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Right Sidebar - Quick Actions -->
+        <aside class="right-sidebar">
+            <div class="sidebar-section">
+                <h3>Quick Actions</h3>
+                <div class="quick-actions">
+                    <button class="action-btn">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>New Session</span>
+                    </button>
+                    <button class="action-btn">
+                        <i class="fas fa-envelope"></i>
+                        <span>Message Parent</span>
+                    </button>
+                    <button class="action-btn">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Create Report</span>
+                    </button>
+                    <button class="action-btn">
+                        <i class="fas fa-book"></i>
+                        <span>Add Resource</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3>Recent Activities</h3>
+                <div class="activity-feed">
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-comment-dots"></i>
+                        </div>
+                        <div class="activity-content">
+                            <p>You messaged Sarah Johnson about Emily's progress</p>
+                            <span class="activity-time">30 mins ago</span>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="activity-content">
+                            <p>Session completed with Michael Chen</p>
+                            <span class="activity-time">2 hours ago</span>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-file-upload"></i>
+                        </div>
+                        <div class="activity-content">
+                            <p>Uploaded new worksheet for Algebra class</p>
+                            <span class="activity-time">Yesterday</span>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <div class="activity-content">
+                            <p>New student registered: Alex Rodriguez</p>
+                            <span class="activity-time">2 days ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Modal for Message Composition -->
+    <div class="modal" id="messageModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>New Message</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="messageForm">
+                    <div class="form-group">
+                        <label>Recipient</label>
+                        <select class="form-control">
+                            <option>Select Parent</option>
+                            <option>Sarah Johnson (Emily Johnson)</option>
+                            <option>David Chen (Michael Chen)</option>
+                            <option>Lisa Williams (Jason Williams)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Subject</label>
+                        <input type="text" class="form-control" placeholder="Message subject">
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea class="form-control" rows="5" placeholder="Type your message here..."></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

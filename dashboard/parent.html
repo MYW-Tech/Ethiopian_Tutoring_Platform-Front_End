@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parent Dashboard | TutorConnect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="parent.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="images/logo.png" alt="TutorConnect Logo" class="logo">
+                <h2>TutorConnect</h2>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active">
+                        <a href="#dashboard">
+                            <i class="fas fa-home"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#students">
+                            <i class="fas fa-user-graduate"></i>
+                            <span>My Students</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#schedule">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Schedule</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#messages">
+                            <i class="fas fa-comments"></i>
+                            <span>Messages</span>
+                            <span class="notification-badge">3</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#payments">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Payments</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#profile">
+                            <i class="fas fa-user-cog"></i>
+                            <span>Profile Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="#help" class="help-btn">
+                    <i class="fas fa-question-circle"></i>
+                    <span>Help Center</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Top Header Bar -->
+            <header class="top-header">
+                <div class="header-left">
+                    <h1>Parent Dashboard</h1>
+                    <div class="breadcrumb">Home / Dashboard</div>
+                </div>
+                
+                <div class="header-right">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    
+                    <div class="notification-icon">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">2</span>
+                    </div>
+                    
+                    <div class="user-profile">
+                        <img src="images/user-avatar.jpg" alt="User Avatar">
+                        <span>Sarah Johnson</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-content">
+                <!-- Welcome Banner -->
+                <section class="welcome-banner">
+                    <div class="welcome-text">
+                        <h2>Welcome back, Sarah!</h2>
+                        <p>Here's what's happening with your students today.</p>
+                    </div>
+                    <div class="welcome-actions">
+                        <button class="btn primary"><i class="fas fa-comment-alt"></i> Message Tutor</button>
+                        <button class="btn secondary"><i class="fas fa-calendar-plus"></i> Schedule Session</button>
+                    </div>
+                </section>
+
+                <!-- Stats Cards -->
+                <section class="stats-cards">
+                    <div class="card">
+                        <div class="card-icon blue">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>Active Students</h3>
+                            <p>2</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-icon green">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>Sessions This Week</h3>
+                            <p>4</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-icon orange">
+                            <i class="fas fa-comment-dots"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>Unread Messages</h3>
+                            <p>3</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-icon purple">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>Pending Payments</h3>
+                            <p>$120.00</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Upcoming Sessions -->
+                <section class="upcoming-sessions">
+                    <div class="section-header">
+                        <h2>Upcoming Sessions</h2>
+                        <a href="#view-all" class="view-all">View All</a>
+                    </div>
+                    
+                    <div class="sessions-list">
+                        <div class="session-card">
+                            <div class="session-date">
+                                <div class="date-day">15</div>
+                                <div class="date-month">Jun</div>
+                            </div>
+                            <div class="session-info">
+                                <h3>Mathematics - Algebra Basics</h3>
+                                <p><i class="fas fa-clock"></i> 3:00 PM - 4:30 PM</p>
+                                <p><i class="fas fa-user"></i> Tutor: Michael Brown</p>
+                                <p><i class="fas fa-user-graduate"></i> Student: Emily Johnson</p>
+                            </div>
+                            <div class="session-actions">
+                                <button class="btn small"><i class="fas fa-video"></i> Join</button>
+                                <button class="btn small outline"><i class="fas fa-comment"></i> Message</button>
+                            </div>
+                        </div>
+                        
+                        <div class="session-card">
+                            <div class="session-date">
+                                <div class="date-day">17</div>
+                                <div class="date-month">Jun</div>
+                            </div>
+                            <div class="session-info">
+                                <h3>Science - Chemistry Basics</h3>
+                                <p><i class="fas fa-clock"></i> 4:00 PM - 5:30 PM</p>
+                                <p><i class="fas fa-user"></i> Tutor: Jessica Wilson</p>
+                                <p><i class="fas fa-user-graduate"></i> Student: Daniel Johnson</p>
+                            </div>
+                            <div class="session-actions">
+                                <button class="btn small"><i class="fas fa-video"></i> Join</button>
+                                <button class="btn small outline"><i class="fas fa-comment"></i> Message</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Recent Messages -->
+                <section class="recent-messages">
+                    <div class="section-header">
+                        <h2>Recent Messages</h2>
+                        <a href="#view-all" class="view-all">View All</a>
+                    </div>
+                    
+                    <div class="messages-list">
+                        <div class="message-card unread">
+                            <div class="message-sender">
+                                <img src="images/tutor-avatar1.jpg" alt="Tutor Avatar">
+                                <h3>Michael Brown</h3>
+                                <span class="message-time">2 hours ago</span>
+                            </div>
+                            <div class="message-preview">
+                                <p>Hi Sarah, I wanted to let you know that Emily is doing great with algebra. She's showing real progress...</p>
+                            </div>
+                        </div>
+                        
+                        <div class="message-card">
+                            <div class="message-sender">
+                                <img src="images/admin-avatar.jpg" alt="Admin Avatar">
+                                <h3>Admin Team</h3>
+                                <span class="message-time">1 day ago</span>
+                            </div>
+                            <div class="message-preview">
+                                <p>Reminder: Your monthly subscription payment is due on June 20th. Please ensure your payment method is up to date...</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Student Progress -->
+                <section class="student-progress">
+                    <div class="section-header">
+                        <h2>Student Progress</h2>
+                        <div class="progress-filter">
+                            <select>
+                                <option>All Students</option>
+                                <option>Emily Johnson</option>
+                                <option>Daniel Johnson</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-chart">
+                        <!-- This would be replaced with an actual chart library like Chart.js -->
+                        <div class="chart-placeholder">
+                            <p>Progress Chart Visualization</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="parent.js"></script>
+</body>
+</html>

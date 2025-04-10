@@ -282,7 +282,7 @@
                 <label for="name">Full Name</label>
                 <div class="input-container">
                     <i class="fas fa-user"></i>
-                    <input type="text" id="name" name="student-username" required placeholder="Enter your full name">
+                    <input type="text" id="username" name="student-username" required placeholder="Enter your full name">
                 </div>
             </div>
 
@@ -371,22 +371,9 @@
                 <i class="fas fa-user-plus"></i> Create Student Account
             </button>
 
-            <p class="login-link">Already have an account? <a href="#">Login here</a></p>
+            <p class="login-link">Already have an account? <a href="student_login.html">Login here</a></p>
         </div>
     </div>
-
-    <script>
-        // Update file input display
-        document.getElementById('profileImage').addEventListener('change', function(e) {
-            const fileName = e.target.files[0] ? e.target.files[0].name : 'No file chosen';
-            document.querySelector('.file-upload-label span').textContent = fileName;
-        });
-
-        function studentSubmit() {
-            // Form validation would go here
-            console.log("Student form submitted!");
-            // In a real implementation, you would submit the form data
-        }
-    </script>
+<script src="fetching.js"></script>
 </body>
 </html>

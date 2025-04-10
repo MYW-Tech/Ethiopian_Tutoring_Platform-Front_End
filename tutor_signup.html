@@ -378,24 +378,15 @@
                     <label for="address">Available Time</label>
                     <div class="input-container">
                         <i class="fas fa-clock"></i>
-                        <input type="time" id="tutor-time" name="time" required>
+                        <input type="text" id="tutor-time" name="time" required>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="address">Available Days</label>
+                    <label for="address">Days</label>
                     <div class="input-container">
-                        <i class="fas fa-calendar-day"></i>
-                        <select id="tutor-day" name="day" required>
-                            <option value="">Select day</option>
-                            <option value="Monday">Monday</option>
-                            <option value="Tuesday">Tuesday</option>
-                            <option value="Wednesday">Wednesday</option>
-                            <option value="Thursday">Thursday</option>
-                            <option value="Friday">Friday</option>
-                            <option value="Saturday">Saturday</option>
-                            <option value="Sunday">Sunday</option>
-                        </select>
+                        <i class="fas fa-day"></i>
+                        <input type="text" id="tutor-day" name="day" required placeholder="Monday, Tuesday...">
                     </div>
                 </div>
             </div>
@@ -415,31 +406,12 @@
                 <i class="fas fa-user-plus"></i> Complete Registration
             </button>
 
-            <div class="success-message" id="successMessage">
-                <i class="fas fa-check-circle"></i> Registration successful! Redirecting...
-            </div>
+            
 
-            <p class="login-link">Already have an account? <a href="login.html">Login here</a></p>
+            <p class="login-link">Already have an account? <a href="tutor_login.html">Login here</a></p>
         </div>
     </div>
+    <script src="fetching.js"></script>
 
-    <script>
-        function tutorSubmit() {
-            // Form validation would go here
-            const successMessage = document.getElementById('successMessage');
-            successMessage.style.display = 'block';
-            
-            // Simulate form submission
-            setTimeout(() => {
-                window.location.href = "tutor-dashboard.html";
-            }, 2000);
-        }
-
-        // Update file input display
-        document.getElementById('tutor-profile').addEventListener('change', function(e) {
-            const fileName = e.target.files[0] ? e.target.files[0].name : 'No file chosen';
-            document.querySelector('.file-input-button span').textContent = fileName;
-        });
-    </script>
 </body>
 </html>

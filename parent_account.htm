@@ -20,9 +20,10 @@
 
 <h1><hr></h1>
 
-<script src="api.js"></script>
 <script type="text/javascript">
-    function signup() {
+const api_base_url = "http://localhost/Ethiopian_Tutoring_Platform/Ethiopian_Tutoring_Platform-Back_End";
+
+function signup() {
         const username = document.getElementById('username').value;
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
@@ -39,12 +40,12 @@
         formData.append('profileImage', profileImage);
         formData.append('action', 'signup_for_parent');
 
-        const url = `${api_base_url}/myw.tutot.api.php`;
+        const url = `${api_base_url}/myw.tutor.api.php`;
         fetch(url, {
                 method: 'POST',
                 body: formData,
             })
-        .then(response => response.json())
+        .then(response => response.text())
         .then(data => {
             const resultContainer = document.createElement('div');
             resultContainer.textContent = JSON.stringify(data, null, 2);
@@ -63,15 +64,14 @@
         const formData = new FormData();
         formData.append('email', email);
         formData.append('password', password);
-        formData.append('action', 'login');
-        formData.append('role', 'parent');
+        formData.append('action', 'login_for_parent');
 
-        const url = `${api_base_url}/user.php`;
+        const url = `${api_base_url}/myw.tutor.api.php`;
         fetch(url, {
                 method: 'POST',
                 body: formData,
             })
-        .then(response => response.json())
+        .then(response => response.text())
         .then(data => {
             const resultContainer = document.createElement('div');
             resultContainer.textContent = JSON.stringify(data, null, 2);
@@ -88,9 +88,9 @@
             "action": "logout"
         };
 
-        const url = `${api_base_url}/user.php?${new URLSearchParams(input)}`; 
+        const url = `${api_base_url}/myw.tutor.api.php?${new URLSearchParams(input)}`; 
         fetch(url)
-            .then(response => response.json())
+            .then(response => response.text())
             .then(data => {
                 const resultContainer = document.createElement('div');
                 resultContainer.textContent = JSON.stringify(data, null, 2);
@@ -103,11 +103,13 @@
     }
 
     function info() {
-        const input = {};
+        const input = {
+            "action" : "current_user",
+        };
 
-        const url = `${api_base_url}/user.php?${new URLSearchParams(input)}`; 
+        const url = `${api_base_url}/myw.tutor.api.php?${new URLSearchParams(input)}`; 
         fetch(url)
-            .then(response => response.json())
+            .then(response => response.text())
             .then(data => {
                 const resultContainer = document.createElement('div');
                 resultContainer.textContent = JSON.stringify(data, null, 2);
@@ -119,3 +121,64 @@
             });
     }
 </script>
+
+<!--
+
+logout
+current_user
+signup_for_admin
+signup_for_parent
+signup_for_student
+signup_for_tutor
+login_for_admin
+login_for_parent
+login_for_student
+login_for_tutor
+list_admin
+list_parent
+list_student
+list_tutor
+activate_admin
+activate_parent
+activate_student
+activate_tutor
+inactivate_admin
+inactivate_parent
+inactivate_student
+inactivate_tutor
+delete_admin
+delete_parent
+delete_student
+delete_tutor
+list_system_feedback
+list_system_description
+list_system_error
+give_feedback_to_system
+give_system_description
+list_student_feedback
+list_tutor_feedback
+give_feedback_to_student
+give_feedback_to_tutor
+give_rate_to_tutor
+update_admin_profile
+update_parent_profile
+update_student_profile
+update_tutor_profile
+list_parent_children
+list_student_tutor
+create_session_for_student
+list_all_sessions
+list_session_for_student
+list_session_for_tutor
+confirm_session
+cancel_session
+complete_session
+reschedul_session
+list_materials
+download_materials
+upload_materials
+delete_materials
+send_chat_message
+get_chat_message
+
+-->
